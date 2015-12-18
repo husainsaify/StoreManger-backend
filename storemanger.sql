@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2015 at 06:31 PM
+-- Generation Time: Dec 18, 2015 at 03:20 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -119,7 +119,8 @@ INSERT INTO `sell` (`id`, `user_id`, `product_id`, `size`, `quantity`, `price_pe
 (1, 1, 1, 1, 3, 200, '16:12:2015', 16122015),
 (2, 1, 1, 2, 2, 300, '16:12:2015', 16122015),
 (3, 1, 1, 3, 1, 500, '16:12:2015', 16122015),
-(4, 1, 2, 2, 2, 100, '17:12:2015', 17122015);
+(4, 1, 2, 2, 2, 100, '17:12:2015', 17122015),
+(5, 1, 2, 2, 2, 100, '17:12:2015', 17122015);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`) VALUES
 (1, 1, 0, 1, 1),
 (2, 2, 0, 1, 1),
 (3, 3, 0, 1, 1),
-(4, 2, 2, 1, 2),
+(4, 2, 0, 1, 2),
 (5, 5, 10, 1, 2),
 (6, 3, 6, 1, 3),
 (7, 6, 12, 1, 3),
@@ -238,7 +239,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `sq`
 --
