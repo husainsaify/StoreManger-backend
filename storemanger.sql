@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2015 at 03:20 PM
+-- Generation Time: Dec 22, 2015 at 07:34 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -58,6 +58,7 @@ CREATE TABLE `product` (
   `category_id` int(11) NOT NULL,
   `time` text NOT NULL,
   `keywords` text NOT NULL,
+  `size_keywords` text NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,11 +66,12 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `image`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `active`) VALUES
-(1, 'hy fashion', '', 'gt 556', 100, 200, 1, 1, '1449862329', 'hy fashion gt 556 relaxo', 'y'),
-(2, 'low fashion', 'pic/1/relaxo/IMG_1449863547.jpg', 'gt 5570', 100, 200, 1, 1, '1449863547', 'low fashion gt 5570 relaxo', 'y'),
-(3, 'medium fashion', '', 'gt 44', 500, 550, 1, 1, '1449864836', 'medium fashion gt 44 relaxo', 'y'),
-(4, 'xyz', 'pic/1/ladies_footwear/IMG_1450113309.jpg', 'gt5570', 100, 200, 1, 2, '1450113309', 'xyz gt5570 ladies footwear', 'n');
+INSERT INTO `product` (`id`, `name`, `image`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `size_keywords`, `active`) VALUES
+(1, 'hy fashion', '', 'gt 556', 100, 200, 1, 1, '1449862329', 'hy fashion gt 556', '', 'y'),
+(2, 'low fashion', 'pic/1/relaxo/IMG_1449863547.jpg', 'gt 5570', 100, 200, 1, 1, '1449863547', 'low fashion gt 5570', '5', 'y'),
+(3, 'medium fashion', '', 'gt 44', 500, 550, 1, 1, '1449864836', 'medium fashion gt 44', '3 6', 'y'),
+(4, 'xyz', 'pic/1/ladies_footwear/IMG_1450113309.jpg', 'gt5570', 100, 200, 1, 2, '1450113309', 'xyz gt5570', '12', 'n'),
+(5, 'sleek', '', 'kkk', 1200, 300, 1, 2, '1450808637', 'sleek kkk', '2 3 4 5 ', 'y');
 
 -- --------------------------------------------------------
 
@@ -120,7 +122,9 @@ INSERT INTO `sell` (`id`, `user_id`, `product_id`, `size`, `quantity`, `price_pe
 (2, 1, 1, 2, 2, 300, '16:12:2015', 16122015),
 (3, 1, 1, 3, 1, 500, '16:12:2015', 16122015),
 (4, 1, 2, 2, 2, 100, '17:12:2015', 17122015),
-(5, 1, 2, 2, 2, 100, '17:12:2015', 17122015);
+(5, 1, 2, 2, 2, 100, '17:12:2015', 17122015),
+(6, 1, 3, 3, 1, 100, '22:12:2015', 22122015),
+(7, 1, 3, 3, 1, 150, '22:12:2015', 22122015);
 
 -- --------------------------------------------------------
 
@@ -146,9 +150,13 @@ INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`) VALUES
 (3, 3, 0, 1, 1),
 (4, 2, 0, 1, 2),
 (5, 5, 10, 1, 2),
-(6, 3, 6, 1, 3),
+(6, 3, 4, 1, 3),
 (7, 6, 12, 1, 3),
-(8, 12, 24, 1, 3);
+(8, 12, 24, 1, 3),
+(9, 2, 1, 1, 5),
+(10, 3, 2, 1, 5),
+(11, 4, 3, 1, 5),
+(12, 5, 4, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -229,7 +237,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `register`
 --
@@ -239,12 +247,12 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user`
 --

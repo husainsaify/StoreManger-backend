@@ -91,7 +91,18 @@ $result = array();
 		}
 
 		//generate keywords
-		$keywords = $name.' '.$code.' '.$cName;
+		$keywords = $name.' '.$code;
+
+		//generate size Keywords
+		$sizeArray = explode(",", $sizeStack);
+		$size = remove_last_empty_item($sizeArray);
+		foreach ($size as $key => $s) {
+			$size_keywords .= $s;
+			//add space
+			if($key < count($size)){
+				$size_keywords .= " ";
+			}
+		}
 		
 		//insert into database
 		Db::insert("product",array(
@@ -103,7 +114,8 @@ $result = array();
 			"user_id" => $userId,
 			"category_id" => $cId,
 			"time" => time(),
-			"keywords" => $keywords
+			"keywords" => $keywords,
+			"size_keywords" => $size_keywords
 		));
 
 		//get the last Inserted productId
@@ -114,8 +126,7 @@ $result = array();
 				Insert Size & Quantity into SQ table
 			*/
 			//create a size array from Size stack
-			$sizeArray = explode(",", $sizeStack);
-			$size = remove_last_empty_item($sizeArray);
+			//(Creatd on line 97)
 
 			//create a quantity arra from quantity stack
 			$quantityArray = explode(",", $quantityStack);
