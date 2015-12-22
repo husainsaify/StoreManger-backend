@@ -1,15 +1,15 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-if(isset($_GET['userId']) && isset($_GET['name'])){
-	$userId = e($_GET['userId']);
-	$name = e($_GET['name']);
+if(isset($_POST['userId']) && isset($_POST['name'])){
+	$userId = e($_POST['userId']);
+	$name = e($_POST['name']);
     //check size is set
-    if(isset($_GET["size"])){
-        $size = e($_GET['size']);
+    if(isset($_POST["size"])){
+        $size = e($_POST['size']);
     }
-    if(isset($_GET['categoryId'])){
-        $categoryId = e($_GET['categoryId']);
+    if(isset($_POST['categoryId'])){
+        $categoryId = e($_POST['categoryId']);
     }
 	//check $userId and product Name is not empty
 	if (empty($userId) || empty($name)) {
@@ -37,7 +37,7 @@ if(isset($_GET['userId']) && isset($_GET['name'])){
     $searchs = preg_split("/[\s,]+/", $searchTerm);
 
     $term_count = 0;
-    $q = "SELECT * FROM `product` WHERE ";
+    $q = "SELECT id AS productId,name,image,code FROM `product` WHERE ";
     $i = 0;
 
     //generate query
