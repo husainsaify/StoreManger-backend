@@ -99,7 +99,7 @@ $result = array();
 		foreach ($size as $key => $s) {
 			$size_keywords .= $s;
 			//add space
-			if($key < count($size)){
+			if($key < count($size)-1){
 				$size_keywords .= " ";
 			}
 		}

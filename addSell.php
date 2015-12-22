@@ -107,7 +107,35 @@
                     "date_id" => $date_id
                 ));
 
-				//if their is an error and we are unable to inter into sell database
+                /*
+					Fetch new size from the database and store it in size_keyword
+					in the product table
+                */
+				$stnt = Db::query("SELECT size FROM `sq` WHERE quantity!=? AND user_id=? AND product_id=?",array(
+						0,
+						$user_id,
+						$product_id
+					));
+				$size_keyword_fetch = $stnt->fetchAll(PDO::FETCH_ASSOC);
+
+				$size_keyword = "";
+				//generate new size_keywords
+				foreach ($size_keyword_fetch as $key => $size) {
+
+					$size_keyword .= $size["size"];
+					if($key < count($size_keyword_fetch)-1){
+						$size_keyword .= " ";
+					}
+				}
+
+				//update size_keyword into product database
+				Db::update("product",array(
+					"size_keywords" => $size_keyword
+					),array(
+					"id","=",$product_id));
+
+
+				//if their is an error and we are unable to inter into database
 				if(Db::getError()){
 					$result["message"] = "Failed to insert into sales";
 					$result["return"] = false;
