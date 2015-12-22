@@ -1,9 +1,9 @@
 <?php
 	require_once "./core/init.php";
 	$result = array();
-	if(isset($_GET["user_id"]) && isset($_GET["date_id"])){
-		$user_id = e($_GET["user_id"]);
-		$date_id = e($_GET["date_id"]);
+	if(isset($_POST["user_id"]) && isset($_POST["date_id"])){
+		$user_id = e($_POST["user_id"]);
+		$date_id = e($_POST["date_id"]);
 
 		//check 
 		if(empty($user_id) && empty($date_id)){
@@ -21,7 +21,7 @@
 
 		//calculate total sales of today
 		$q = Db::query("SELECT 
-						sell.id AS sell_id,sell.quantity,sell.price_per_q,product.id AS product_id,product.name,product.code,product.CP AS cp,product.SP AS sp
+						sell.id AS sell_id,sell.quantity,sell.price_per_q,product.id AS product_id,product.image,product.name,product.code,product.CP AS cp,product.SP AS sp
 						FROM sell 
 						INNER JOIN product 
 						ON sell.product_id = product.id 
@@ -47,6 +47,7 @@
 				$product[$key]["quantity"] = $value["quantity"];
 				$product[$key]["price_per"] = $value["price_per_q"];
 				$product[$key]["product_id"] = $value["product_id"];
+				$product[$key]["product_image"] = $value["image"];
 				$product[$key]["name"] = $value["name"];
 				$product[$key]["code"] = $value["code"];
 				$product[$key]["cp"] = $value["cp"];
