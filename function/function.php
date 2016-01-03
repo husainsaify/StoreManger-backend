@@ -154,6 +154,16 @@ function check_mobile($mobile){
         return false;
     }
 }
+//check email is not registered in the database
+function check_email_is_unique($email){
+    $count = Db::rowCount("user",array(
+        "email" => $email),
+    array("="));
+    if($count == 0){
+        return true;
+    }
+    return false;
+}
 
 //check user is valid
 function check_user($userId){

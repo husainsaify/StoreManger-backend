@@ -1,43 +1,52 @@
 <?php
-	require_once "core/init.php";
-	$result = array();
+require_once "core/init.php";
+$result = array();
 
-	if(isset($_POST["register"])){
-		$name = e($_POST['name']);
-		$phone = e($_POST['phone']);
-		$email = e($_POST['email']);
-		$desc = e($_POST['description']);
-		$time = time();
+if(isset($_POST["fullname"]) && isset($_POST["storename"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["password"])){
+	$name = e($_POST["fullname"]);
+	$storename = e($_POST["storename"]);
+	$email = e($_POST["email"]);
+	$phone = e($_POST["phone"]);
+	$password = e($_POST["password"]);
+	$time = time();
 
-		if(!empty($name) && !empty($phone) && !empty($email) && !empty($desc)){
-			//insert
-			Db::insert("register",array(
-				"name" => $name,
-				"phone" => $phone,
-				"email" => $email,
-				"description" => $desc,
-				"time" => $time
-			));
-		}else{
-			$result["message"] = "Fill in all the field";
-			$result["return"] = false;
-			echo json_encode($result);
-			exit;
-		}
-
-
-		if(Db::getError() == false){
-			$result["message"] = "Thanks for showing interest. Our team will contact you shortly";
-			$result["return"] = true;
-		}else{
-			$result["message"] = "Try again";
-			$result["return"] = false;
-		}
-		echo json_encode($result);
-		exit;
-	}else{
-		$result["message"] = "Access denied";
+	if(empty($name) && empty($storename) && empty($phone) && empty($email) && empty($phone) && empty($password)){
+		$result["message"] = "Fill in all the field";
 		$result["return"] = false;
-		echo json_encode($result);
-		exit;
+		json($result);
 	}
+
+	//check email is 
+	if(!check_email_is_unique($email)){
+		$result["message"] = "Email already register! Try login";
+		$result["return"] = false;
+		json($result);	
+	}
+
+	$hash_password = password_hash($password,PASSWORD_DEFAULT);
+
+	//insert into Db
+	Db::insert("user",array(
+		"name" => $name,
+		"storename" => $storename,
+		"email" => $email,
+		"phone" => $phone,
+		"password" => $hash_password,
+		"register_at" => $time,
+		"active" => "y"
+	));
+
+	if(!Db::getError()){
+		$result["message"] = "Success";
+		$result["return"] = true;
+	}else{
+		$result["message"] = "Failed to register user";
+		$result["return"] = false;
+	}
+
+	json($result);
+}else{
+	$result["message"] = "Access denied";
+	$result["return"] = false;
+	json($result);
+}

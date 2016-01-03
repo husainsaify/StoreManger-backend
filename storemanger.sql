@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2015 at 07:34 PM
+-- Generation Time: Jan 03, 2016 at 07:51 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -33,14 +33,6 @@ CREATE TABLE `category` (
   `time` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `user_id`, `name`, `time`) VALUES
-(1, 1, 'relaxo', '1449860267'),
-(2, 1, 'ladies footwear', '1450113259');
-
 -- --------------------------------------------------------
 
 --
@@ -62,17 +54,6 @@ CREATE TABLE `product` (
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`id`, `name`, `image`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `size_keywords`, `active`) VALUES
-(1, 'hy fashion', '', 'gt 556', 100, 200, 1, 1, '1449862329', 'hy fashion gt 556', '', 'y'),
-(2, 'low fashion', 'pic/1/relaxo/IMG_1449863547.jpg', 'gt 5570', 100, 200, 1, 1, '1449863547', 'low fashion gt 5570', '5', 'y'),
-(3, 'medium fashion', '', 'gt 44', 500, 550, 1, 1, '1449864836', 'medium fashion gt 44', '3 6', 'y'),
-(4, 'xyz', 'pic/1/ladies_footwear/IMG_1450113309.jpg', 'gt5570', 100, 200, 1, 2, '1450113309', 'xyz gt5570', '12', 'n'),
-(5, 'sleek', '', 'kkk', 1200, 300, 1, 2, '1450808637', 'sleek kkk', '2 3 4 5 ', 'y');
-
 -- --------------------------------------------------------
 
 --
@@ -87,14 +68,6 @@ CREATE TABLE `register` (
   `description` text NOT NULL,
   `time` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `register`
---
-
-INSERT INTO `register` (`id`, `name`, `phone`, `email`, `description`, `time`) VALUES
-(1, 'husain', '8962239913', 'hsnsaify22@gmail.com', 'mediacal store', '1448702586'),
-(2, 'ali', '8962239913', 'hunkhusain@gmail.com', 'saify kids shoes', '1449255188');
 
 -- --------------------------------------------------------
 
@@ -113,19 +86,6 @@ CREATE TABLE `sell` (
   `date_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sell`
---
-
-INSERT INTO `sell` (`id`, `user_id`, `product_id`, `size`, `quantity`, `price_per_q`, `date`, `date_id`) VALUES
-(1, 1, 1, 1, 3, 200, '16:12:2015', 16122015),
-(2, 1, 1, 2, 2, 300, '16:12:2015', 16122015),
-(3, 1, 1, 3, 1, 500, '16:12:2015', 16122015),
-(4, 1, 2, 2, 2, 100, '17:12:2015', 17122015),
-(5, 1, 2, 2, 2, 100, '17:12:2015', 17122015),
-(6, 1, 3, 3, 1, 100, '22:12:2015', 22122015),
-(7, 1, 3, 3, 1, 150, '22:12:2015', 22122015);
-
 -- --------------------------------------------------------
 
 --
@@ -140,24 +100,6 @@ CREATE TABLE `sq` (
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sq`
---
-
-INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`) VALUES
-(1, 1, 0, 1, 1),
-(2, 2, 0, 1, 1),
-(3, 3, 0, 1, 1),
-(4, 2, 0, 1, 2),
-(5, 5, 10, 1, 2),
-(6, 3, 4, 1, 3),
-(7, 6, 12, 1, 3),
-(8, 12, 24, 1, 3),
-(9, 2, 1, 1, 5),
-(10, 3, 2, 1, 5),
-(11, 4, 3, 1, 5),
-(12, 5, 4, 1, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -167,12 +109,11 @@ INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
+  `storename` text NOT NULL,
   `email` text NOT NULL,
   `phone` text NOT NULL,
   `password` text NOT NULL,
-  `register_at` date NOT NULL,
-  `last_bill_paid` date NOT NULL,
-  `next_due_date` date NOT NULL,
+  `register_at` text NOT NULL,
   `active` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -180,9 +121,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `phone`, `password`, `register_at`, `last_bill_paid`, `next_due_date`, `active`) VALUES
-(1, 'husain saify', 'hsnsaify22@gmail.com', '8962239913', 'Y3MvczlxMUZLRkdRUW94UjV1a2s1Zz09', '2015-11-01', '2015-11-10', '2015-11-05', 'y'),
-(2, 'ali', 'test@test.com', '8962239913', 'Y3MvczlxMUZLRkdRUW94UjV1a2s1Zz09', '2015-11-11', '2015-11-09', '2015-11-10', 'y');
+INSERT INTO `user` (`id`, `name`, `storename`, `email`, `phone`, `password`, `register_at`, `active`) VALUES
+(1, 'husain saify', '', 'hsnsaify22@gmail.com', '8962239913', 'Y3MvczlxMUZLRkdRUW94UjV1a2s1Zz09', '2015-11-01', 'y'),
+(2, 'ali', '', 'ali@gmail.com', '8962239913', 'Y3MvczlxMUZLRkdRUW94UjV1a2s1Zz09', '2015-11-11', 'y'),
+(3, 'husain', 'husain', 'ali@gail.com', '63636363', 'hhhhhhh', '1451846867', ''),
+(4, 'husain', 'husain', 'ai@gail.com', '63636363', '$2y$10$/qKV4LwPFdeLy4j4Tc0cX.d5nBKuesaEwI4hQmUlWz7Hn0xxnUi5C', '1451847013', 'y');
 
 --
 -- Indexes for dumped tables
@@ -232,32 +175,32 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
