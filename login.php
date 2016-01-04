@@ -18,36 +18,40 @@
             echo json_encode($result);
             exit;
         }
-
-        $encPassword = encryption("e",$password);
-
+        
         //check email is valid
         $count = Db::rowCount("user",array(
-            "email" => $email,
-            "password" => $encPassword
-        ),array("=","="));
+            "email" => $email
+        ),array("="));
 
         //if one user exits
         if($count == 1){
             //fetch results and display
             $detail = Db::fetch("user",array(
-                "email" => $email,
-                "password" => $encPassword
-            ),array("=","="));
+                "email" => $email
+            ),array("="));
 
-            if(db::getError() == true){
-                $result["message"] = "Query failed";
+            //store the hash password
+            $hash = $detail[0]["password"];
+
+            //check the hash match the password
+            if (password_verify($password, $hash)) {
+                if(db::getError() == true){
+                    $result["message"] = "Query failed";
+                    $result["return"] = false;
+                }else{
+                    $result["message"] = "success";
+                    $result["return"] = true;
+                    $result["user"] = $detail;
+                } 
+                json($result);
+            } else {
+                $result["message"] = "Invalid password";
                 $result["return"] = false;
-            }else{
-                $result["message"] = "success";
-                $result["return"] = true;
-                $result["user"] = $detail;
+                json($result);
             }
-            //display result
-            echo json_encode($result);
-            exit;
         }else{
-            $result["message"] = "Invalid email or password";
+            $result["message"] = "Invalid email address";
             $result["return"] = false;
             echo json_encode($result);
             exit;
