@@ -1,5 +1,6 @@
 <?php
 require_once "core/init.php";
+require_once "./class/password.php"; //Compact class to support password_hash in 5.5 lower
 $result = array();
 
 if(isset($_POST["fullname"]) && isset($_POST["storename"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["password"])){

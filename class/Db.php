@@ -1,6 +1,14 @@
 <?php
 class Db{
     //member variables
+    /*private static $_con = null,
+            $_host = "localhost",
+            $_user = "hackedzw_husain",
+            $_pass = "fttrisha@123",
+            $_db = "hackedzw_storename",
+            $_error = false;*/
+
+    //member variables
     private static $_con = null,
             $_host = "127.0.0.1",
             $_user = "root",
@@ -8,15 +16,8 @@ class Db{
             $_db = "storemanager",
             $_error = false;
 
-    /*private static $_con = null,
-            $_host = "mysql1.000webhost.com",
-            $_user = "a5121264_husai",
-            $_pass = "fttrisha",
-            $_db = "a5121264_store",
-            $_error = false;*/
-
     //established connection to the database
-    private function setConnection(){
+    private static function setConnection(){
         try{
             self::$_con = new PDO("mysql:host=".self::$_host.";dbname=".self::$_db,self::$_user,self::$_pass);
             // set the PDO error mode to exception
@@ -46,7 +47,7 @@ class Db{
     }
 
     //set error
-    private function setError($value = true){
+    private static function setError($value = true){
         self::$_error = $value;
     }
 
