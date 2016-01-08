@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2016 at 07:46 PM
+-- Generation Time: Jan 08, 2016 at 06:25 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -41,7 +41,8 @@ INSERT INTO `category` (`id`, `user_id`, `name`, `time`) VALUES
 (1, 1, 'test', '1452186798'),
 (2, 1, 'test2', '1452190892'),
 (3, 1, 'test3', '1452191090'),
-(4, 1, 'test4', '1452191097');
+(4, 1, 'test4', '1452191097'),
+(5, 1, 'hunkhusain', '1452269912');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,29 @@ CREATE TABLE `product` (
   `size_keywords` text NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salesman`
+--
+
+CREATE TABLE `salesman` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `time` text NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `salesman`
+--
+
+INSERT INTO `salesman` (`id`, `name`, `user_id`, `time`, `active`) VALUES
+(1, 'montu', 1, '1452270486', 'y'),
+(2, 'mont', 1, '1452270562', 'y'),
+(3, 'testu', 1, '1452273170', 'y');
 
 -- --------------------------------------------------------
 
@@ -137,6 +161,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `salesman`
+--
+ALTER TABLE `salesman`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sell`
 --
 ALTER TABLE `sell`
@@ -162,12 +192,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `salesman`
+--
+ALTER TABLE `salesman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sell`
 --

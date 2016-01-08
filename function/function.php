@@ -241,3 +241,14 @@ function json($result = array()){
     echo json_encode($result);
     exit();
 }
+/*
+    Method to check Salesman with same name in Same userId exits or not
+*/
+function check_salesman_exits($salesman,$userid){
+    $cout = Db::rowCount("salesman",array(
+        "name" => $salesman,
+        "user_id" => $userid
+    ),array("=","="));
+
+    return $cout == 1 ? false : true;
+}    
