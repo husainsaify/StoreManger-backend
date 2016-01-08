@@ -38,6 +38,15 @@ if(isset($_POST["fullname"]) && isset($_POST["storename"]) && isset($_POST["emai
 	));
 
 	if(!Db::getError()){
+		//Add default salesman
+		$time =  time();
+        //insert category
+        $insert = Db::insert("salesman",array(
+            "name" => "Owner",
+            "user_id" => Db::lastInsertedId(),
+            "time" => $time
+        ));
+
 		$result["message"] = "Success";
 		$result["user_id"] = Db::lastInsertedId();
 		$result["return"] = true;
