@@ -19,14 +19,6 @@ if(isset($_POST['userId'])){
         exit;
     }
 
-    //check user is active or not
-    if(!check_user_active($userId)){
-        $result["return"] = false;
-        $result["message"] = "Dear user! Please pay your bills to reactivate your account.";
-        echo json_encode($result);
-        exit;
-    }
-
     //count category
     $categoryCount = Db::rowCount("category",array(
             "user_id" => $userId),array("="));
