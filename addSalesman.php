@@ -2,9 +2,9 @@
     require_once "./core/init.php";
     $result = array();
 
-    if(isset($_POST['salesman']) && isset($_POST['userid'])){
+    if(isset($_POST['salesman']) && isset($_POST['userId'])){
         $salesman = e($_POST['salesman']);
-        $userId = e($_POST['userid']);
+        $userId = e($_POST['userId']);
 
         //check fields are not empty
         if(empty($salesman) || empty($userId)){
