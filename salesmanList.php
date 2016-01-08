@@ -1,8 +1,8 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-if(isset($_GET['userId'])){
-    $userId = e($_GET['userId']);
+if(isset($_POST['userId'])){
+    $userId = e($_POST['userId']);
 
     if(empty($userId)){
         $result["return"] = false;
