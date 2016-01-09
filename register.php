@@ -48,7 +48,7 @@ if(isset($_POST["fullname"]) && isset($_POST["storename"]) && isset($_POST["emai
         ));
 
 		$result["message"] = "Success";
-		$result["user_id"] = Db::lastInsertedId();
+		$result["userId"] = Db::lastInsertedId();
 		$result["return"] = true;
 	}else{
 		$result["message"] = "Failed to register user";

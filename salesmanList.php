@@ -52,7 +52,7 @@ if(isset($_POST['userId'])){
     }else{
         $result["return"] = true;
         $result["message"] = "Success";
-        $result["category"] = $newList;
+        $result["data"] = $newList;
     }
     echo json_encode($result);
     exit;
