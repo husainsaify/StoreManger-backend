@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2016 at 06:25 PM
+-- Generation Time: Jan 10, 2016 at 10:02 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -30,19 +30,20 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `time` text NOT NULL
+  `time` text NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `user_id`, `name`, `time`) VALUES
-(1, 1, 'test', '1452186798'),
-(2, 1, 'test2', '1452190892'),
-(3, 1, 'test3', '1452191090'),
-(4, 1, 'test4', '1452191097'),
-(5, 1, 'hunkhusain', '1452269912');
+INSERT INTO `category` (`id`, `user_id`, `name`, `time`, `active`) VALUES
+(1, 1, 'test', '1452186798', 'y'),
+(2, 1, 'test2', '1452190892', 'y'),
+(3, 1, 'test3', '1452191090', 'y'),
+(4, 1, 'test4', '1452191097', 'y'),
+(5, 1, 'hunkhusain', '1452269912', 'y');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,9 @@ CREATE TABLE `salesman` (
 INSERT INTO `salesman` (`id`, `name`, `user_id`, `time`, `active`) VALUES
 (1, 'montu', 1, '1452270486', 'y'),
 (2, 'mont', 1, '1452270562', 'y'),
-(3, 'testu', 1, '1452273170', 'y');
+(3, 'testu', 1, '1452273170', 'y'),
+(4, 'babar', 2, '1452456461', 'y'),
+(5, 'babar', 1, '1452421421', 'y');
 
 -- --------------------------------------------------------
 
@@ -142,7 +145,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `storename`, `email`, `phone`, `password`, `register_at`, `active`) VALUES
 (1, 'husain saify', 'saify kids shoes', 'hsnsaify22@gmail.com', '8962239913', '$2y$10$Gz2Nb4iaOtI8OTbm1qBw8etuHE9xO6rA1NacNBpl10j7EJ15z7MZS', '1451932484', 'y'),
-(2, 'murtaza agaz', 'Ghanta', 'murtazaagazz123@gmail.com', '8962239913', '$2y$10$ScmFC4CIc4Ism0wiGSwzBOLgeMi7BBYHlVkbrOYjhY3wqxUUqXU86', '1451991657', 'y');
+(2, 'murtaza agaz', 'Ghanta', 'murtazaagaz123@gmail.com', '8962239913', '$2y$10$ScmFC4CIc4Ism0wiGSwzBOLgeMi7BBYHlVkbrOYjhY3wqxUUqXU86', '1451991657', 'y');
 
 --
 -- Indexes for dumped tables
@@ -202,7 +205,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `salesman`
 --
 ALTER TABLE `salesman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `sell`
 --
