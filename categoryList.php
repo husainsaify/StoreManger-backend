@@ -25,6 +25,7 @@ if(isset($_POST['userId'])){
 
     if($categoryCount <= 0){
         $result["return"] = false;
+        $result["count"] = $categoryCount;
         $result["message"] = "No category found";
         echo json_encode($result);
         exit;
@@ -32,13 +33,16 @@ if(isset($_POST['userId'])){
 
     //fetch category list
     $list = Db::fetch("category",array(
-        "user_id" => $userId),array("="));
+        "user_id" => $userId,
+        "active" => "y"),array("=","="));
 
     //create a new list
     $newList = array();
     foreach ($list as $key => $value) {
         $newList[$key]["id"] = $value["id"];
         $newList[$key]["name"] = $value["name"];
+        $newList[$key]["user_id"] = $value["user_id"];
+        $newList[$key]["time"] = $value["time"];
     }
 
     if(Db::getError()){
@@ -47,7 +51,7 @@ if(isset($_POST['userId'])){
     }else{
         $result["return"] = true;
         $result["message"] = "Success";
-        $result["category"] = $newList;
+        $result["data"] = $newList;
     }
     echo json_encode($result);
     exit;
