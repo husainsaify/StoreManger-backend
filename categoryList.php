@@ -24,7 +24,7 @@ if(isset($_POST['userId'])){
             "user_id" => $userId),array("="));
 
     if($categoryCount <= 0){
-        $result["return"] = false;
+        $result["return"] = true;
         $result["count"] = $categoryCount;
         $result["message"] = "No category found";
         echo json_encode($result);
