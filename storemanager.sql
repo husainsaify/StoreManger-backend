@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2016 at 10:02 PM
+-- Generation Time: Jan 11, 2016 at 08:29 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -43,7 +43,8 @@ INSERT INTO `category` (`id`, `user_id`, `name`, `time`, `active`) VALUES
 (2, 1, 'test2', '1452190892', 'y'),
 (3, 1, 'test3', '1452191090', 'y'),
 (4, 1, 'test4', '1452191097', 'y'),
-(5, 1, 'hunkhusain', '1452269912', 'y');
+(5, 1, 'hunkhusain', '1452269912', 'y'),
+(6, 2, 'ghanta', '1452533578', 'y');
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `product`
 --
