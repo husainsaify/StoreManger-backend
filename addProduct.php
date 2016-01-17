@@ -72,6 +72,7 @@ $result = array();
 		if(!empty($image)){
 			//decode the image and upload it
 			$decodemage = base64_decode($image);
+
 			$filename = "IMG_".time().".jpg";
 
 			//create a categoryName without space for directory to store image
@@ -86,6 +87,23 @@ $result = array();
 			//upload image
 			file_put_contents("pic/{$userId}/{$dirCname}/{$filename}",$decodemage);
 			$imagePath = "pic/{$userId}/{$dirCname}/{$filename}";
+
+			//Create a thumbnail of the image
+			$image_size = getimagesize($imagePath);
+			$image_width = $image_size[0];
+			$image_height = $image_size[1];
+
+			$new_size = ($image_width + $image_height) / ($image_width * ($image_height / 45));
+			$new_width = $image_width * $new_size;
+			$new_height = $image_height * $new_size;
+
+			$new_image = imagecreatetruecolor($new_width, $new_height);
+			$old_image = imagecreatefromjpeg($imagePath);
+			imagecopyresized($new_image, $old_image, 0, 0, 0, 0, $new_width, $new_height, $image_width, $image_height);
+			//create name for image thumbnail
+			$imageThumb = "pic/{$userId}/{$dirCname}/THUMB_".time().".jpg";
+			imagejpeg($new_image,"./".$imageThumb);
+
 		}else{
 			$imagePath = "";
 		}
@@ -109,6 +127,7 @@ $result = array();
 		Db::insert("product",array(
 			"name" => $name,
 			"image" => $imagePath,
+			"image_thumb" => $imageThumb,
 			"code" => $code,
 			"CP" => $cp,
 			"SP" => $sp,
