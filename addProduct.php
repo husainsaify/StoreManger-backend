@@ -1,18 +1,18 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-	if (isset($_GET["categoryName"]) && isset($_GET["categoryId"]) && isset($_GET["userId"]) && isset($_GET["pImage"]) && isset($_GET["pName"]) && isset($_GET["pCode"]) && isset($_GET["pCP"]) && isset($_GET['pSP']) && isset($_GET["pSize"]) && isset($_GET["pQuantity"])) {
+	if (isset($_POST["categoryName"]) && isset($_POST["categoryId"]) && isset($_POST["userId"]) && isset($_POST["pImage"]) && isset($_POST["pName"]) && isset($_POST["pCode"]) && isset($_POST["pCP"]) && isset($_POST['pSP']) && isset($_POST["pSize"]) && isset($_POST["pQuantity"])) {
 		//Escape variables
-		$cName = e($_GET["categoryName"]);
-		$cId = e($_GET["categoryId"]);
-		$userId = e($_GET["userId"]);
-		$image = e($_GET["pImage"]);
-		$name = e($_GET["pName"]);
-		$code = e($_GET["pCode"]);
-		$cp = e($_GET["pCP"]);
-		$sp = e($_GET['pSP']);
-		$sizeStack = e($_GET["pSize"]);
-		$quantityStack = e($_GET["pQuantity"]);
+		$cName = e($_POST["categoryName"]);
+		$cId = e($_POST["categoryId"]);
+		$userId = e($_POST["userId"]);
+		$image = e($_POST["pImage"]);
+		$name = e($_POST["pName"]);
+		$code = e($_POST["pCode"]);
+		$cp = e($_POST["pCP"]);
+		$sp = e($_POST['pSP']);
+		$sizeStack = e($_POST["pSize"]);
+		$quantityStack = e($_POST["pQuantity"]);
 
 		//empty
 		if (empty($cName) || empty($cId) || empty($userId) || empty($name) || empty($code) || empty($cp) || empty($sp) || empty($sizeStack) || empty($quantityStack)) {
