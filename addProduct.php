@@ -1,18 +1,18 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-	if (isset($_POST["categoryName"]) && isset($_POST["categoryId"]) && isset($_POST["userId"]) && isset($_POST["pImage"]) && isset($_POST["pName"]) && isset($_POST["pCode"]) && isset($_POST["pCP"]) && isset($_POST['pSP']) && isset($_POST["pSize"]) && isset($_POST["pQuantity"])) {
+	if (isset($_GET["categoryName"]) && isset($_GET["categoryId"]) && isset($_GET["userId"]) && isset($_GET["pImage"]) && isset($_GET["pName"]) && isset($_GET["pCode"]) && isset($_GET["pCP"]) && isset($_GET['pSP']) && isset($_GET["pSize"]) && isset($_GET["pQuantity"])) {
 		//Escape variables
-		$cName = e($_POST["categoryName"]);
-		$cId = e($_POST["categoryId"]);
-		$userId = e($_POST["userId"]);
-		$image = e($_POST["pImage"]);
-		$name = e($_POST["pName"]);
-		$code = e($_POST["pCode"]);
-		$cp = e($_POST["pCP"]);
-		$sp = e($_POST['pSP']);
-		$sizeStack = e($_POST["pSize"]);
-		$quantityStack = e($_POST["pQuantity"]);
+		$cName = e($_GET["categoryName"]);
+		$cId = e($_GET["categoryId"]);
+		$userId = e($_GET["userId"]);
+		$image = e($_GET["pImage"]);
+		$name = e($_GET["pName"]);
+		$code = e($_GET["pCode"]);
+		$cp = e($_GET["pCP"]);
+		$sp = e($_GET['pSP']);
+		$sizeStack = e($_GET["pSize"]);
+		$quantityStack = e($_GET["pQuantity"]);
 
 		//empty
 		if (empty($cName) || empty($cId) || empty($userId) || empty($name) || empty($code) || empty($cp) || empty($sp) || empty($sizeStack) || empty($quantityStack)) {
@@ -79,7 +79,7 @@ $result = array();
 			$dirCname = str_replace(" ", "_", $cName);
 
 			//make a dir if not exits
-			if(!is_dir("pic/{$userId}/{$dirCname}")){
+			if(!file_exists("pic/{$userId}/{$dirCname}")){
 				mkdir("pic/{$userId}/");
 				mkdir("pic/{$userId}/{$dirCname}");
 			}
@@ -136,19 +136,33 @@ $result = array();
 			//insert
 			foreach ($size as $key => $s) {
 
-				//check product with that is size already in the db or not
+				/*
+					check product with that is size already in the db or not
+					if yes fetch old size quantity from the db
+					and add new size quantity to it and update into db
+				*/
 				if(!check_size_is_unique($s,$userId,$productId)){
-					$result["message"] = "Size `{$s}` already exits";
-					$result["false"] = false;
-					json($result);
-				}
+					
+					//fetch the quantity from db
+					$stmt = Db::query("SELECT quantity FROM `sq` WHERE size = ? AND user_id = ? AND product_id = ?",array($s,$userId,$productId));
+					$r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+					$oldQuantity = $r[0]["quantity"];
 
-				Db::insert("sq",array(
-					"size" => $s,
-					"quantity" => $quantity[$key],
-					"user_id" => $userId,
-					"product_id" => $productId
-				));
+					//create new quantity
+					$newQuantity = $oldQuantity + $quantity[$key];
+
+					//update new quantity into database
+					Db::update("sq",array(
+    					"quantity" => $newQuantity),
+    					array("size","=",$s," AND ","user_id","=",$userId," AND ","product_id","=",$productId));
+				}else{
+					Db::insert("sq",array(
+							"size" => $s,
+							"quantity" => $quantity[$key],
+							"user_id" => $userId,
+							"product_id" => $productId
+					));
+				}
 			}
 			//show success message
 			$result["message"] = "Product added";

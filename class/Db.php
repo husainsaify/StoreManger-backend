@@ -136,6 +136,7 @@ class Db{
         foreach($where as $whr) {
             $whereString .= $whr;
         }
+
         self::query("UPDATE `{$tableName}` SET {$updateString} WHERE {$whereString}",array_values($update));
 
         return self::getError();
