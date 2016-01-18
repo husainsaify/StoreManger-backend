@@ -47,9 +47,9 @@ if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
     ),array("=","=","="));
 
     if($count <= 0){
-        $result["return"] = true;
+        $result["return"] = false;
         $result["message"] = "No product Added yet!";
-        $result["product"] = null;
+        $result["count"] = 0;
         echo json_encode($result);
         exit;
     }
@@ -67,8 +67,9 @@ if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
         foreach($product as $key => $value){
             $newProductArray[$key]["productId"] = $value["id"];
             $newProductArray[$key]["name"] = $value["name"];
-            $newProductArray[$key]["image"] = $value["image"];
+            $newProductArray[$key]["image"] = $value["image_thumb"];
             $newProductArray[$key]["code"] = $value["code"];
+            $newProductArray[$key]["time"] = $value["time"];
         }
 
         //output the result json
