@@ -1,11 +1,11 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-if(isset($_GET["userId"]) && isset($_GET["categoryId"])){
+if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
 
     //escape
-    $userId = e($_GET["userId"]);
-    $categoryId = e($_GET["categoryId"]);
+    $userId = e($_POST["userId"]);
+    $categoryId = e($_POST["categoryId"]);
 
     //check no empty
     if(empty($userId) || empty($categoryId)){
@@ -71,7 +71,7 @@ if(isset($_GET["userId"]) && isset($_GET["categoryId"])){
             $newProductArray[$key]["name"] = $value["name"];
             $newProductArray[$key]["image"] = $value["image_thumb"];
             $newProductArray[$key]["code"] = $value["code"];
-            $newProductArray[$key]["time"] = date('d-M-y', $value["time"]);;
+            $newProductArray[$key]["time"] = date('d/m/y', $value["time"]);;
         }
 
         //output the result json
