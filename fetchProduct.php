@@ -49,7 +49,7 @@ if(isset($_POST["userId"]) && isset($_POST["productId"])){
 
     if(!Db::getError()){
         //create dateTime from time stamp
-        $dateTime = date("d-m-Y", $product[0]["time"]);
+        $dateTime = date("d/m/y", $product[0]["time"]);
 
         //fetch Size & quantity
         $q = Db::query("SELECT size,quantity FROM `sq` WHERE user_id=? AND product_id=?",array($userId,$productId));
