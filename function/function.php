@@ -233,7 +233,7 @@ function check_size_is_unique($size,$product_id,$user_id){
         "user_id" => $user_id,
         "product_id" => $product_id
         ),array("=","=","="));
-    return $c <= 0 ? true : false;
+    return $count <= 0 ? true : false;
 }
 
 //echo json

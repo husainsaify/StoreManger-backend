@@ -57,7 +57,7 @@ class Db{
     }
 
     //query method with bind functionality
-    public static function query($sql,$bindPrams = array()){
+    public static function query($sql,$bindPrams){
         //get connection
         $con = self::getConnection();
         //set error to false

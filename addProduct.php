@@ -94,6 +94,7 @@ $result = array();
 		$keywords = $name.' '.$code;
 
 		//generate size Keywords
+		$size_keywords = "";
 		$sizeArray = explode(",", $sizeStack);
 		$size = remove_last_empty_item($sizeArray);
 		foreach ($size as $key => $s) {
@@ -136,7 +137,7 @@ $result = array();
 			foreach ($size as $key => $s) {
 
 				//check product with that is size already in the db or not
-				if(!check_size_is_unique($size)){
+				if(!check_size_is_unique($s,$userId,$productId)){
 					$result["message"] = "Size `{$s}` already exits";
 					$result["false"] = false;
 					json($result);
@@ -150,7 +151,7 @@ $result = array();
 				));
 			}
 			//show success message
-			$result["message"] = "Success";
+			$result["message"] = "Product added";
 			$result["return"] = true;
 
 		}else{
