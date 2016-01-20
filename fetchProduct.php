@@ -66,7 +66,7 @@ if(isset($_POST["userId"]) && isset($_POST["productId"])){
         //output the result json
         $result["return"] = true;
         $result["message"] = "Success";
-        $result["user_id"] = $userId;
+        $result["userId"] = $userId;
         $result["id"] = $product[0]["id"];
         $result["name"] = $product[0]["name"];
         $result["image"] = $product[0]["image"];
