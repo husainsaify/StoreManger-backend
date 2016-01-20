@@ -227,7 +227,7 @@ function remove_last_empty_item($item = array()){
 }
 
 //check product with that size is already stored in db or not
-function check_size_is_unique($size,$product_id,$user_id){
+function check_size_is_unique($size,$user_id,$product_id){
     $count = Db::rowCount("sq",array(
         "size" => $size,
         "user_id" => $user_id,

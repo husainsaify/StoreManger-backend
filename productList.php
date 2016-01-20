@@ -47,7 +47,7 @@ if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
     ),array("=","=","="));
 
     if($count <= 0){
-        $result["return"] = false;
+        $result["return"] = true;
         $result["message"] = "No product Added yet!";
         $result["count"] = 0;
         echo json_encode($result);
@@ -75,7 +75,7 @@ if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
         //output the result json
         $result["return"] = true;
         $result["message"] = "Success";
-        $result["product"] = $newProductArray;
+        $result["data"] = $newProductArray;
     }else{
         $result["return"] = false;
         $result["message"] = "Failed to fetch products";

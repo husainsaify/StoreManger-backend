@@ -106,6 +106,7 @@ $result = array();
 
 		}else{
 			$imagePath = "";
+			$imageThumb = "";
 		}
 
 		//generate keywords
@@ -161,7 +162,6 @@ $result = array();
 					and add new size quantity to it and update into db
 				*/
 				if(!check_size_is_unique($s,$userId,$productId)){
-					
 					//fetch the quantity from db
 					$stmt = Db::query("SELECT quantity FROM `sq` WHERE size = ? AND user_id = ? AND product_id = ?",array($s,$userId,$productId));
 					$r = $stmt->fetchAll(PDO::FETCH_ASSOC);
