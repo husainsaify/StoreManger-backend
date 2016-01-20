@@ -1,7 +1,7 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-	if (isset($_POST)) {
+	if (isset($_POST["categoryName"]) && isset($_POST["categoryId"]) && isset($_POST["userId"]) && isset($_POST["pImage"]) && isset($_POST["pName"]) && isset($_POST["pCode"]) && isset($_POST["pCP"]) && isset($_POST['pSP']) && isset($_POST["pSize"]) && isset($_POST["pQuantity"])) {
 		//Escape variables
 		$cName = e($_POST["categoryName"]);
 		$cId = e($_POST["categoryId"]);
