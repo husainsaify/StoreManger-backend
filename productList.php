@@ -66,6 +66,8 @@ if(isset($_POST["userId"]) && isset($_POST["categoryId"])){
         $newProductArray = array();
         foreach($product as $key => $value){
             $newProductArray[$key]["productId"] = $value["id"];
+            $newProductArray[$key]["userId"] = $value["user_id"];
+            $newProductArray[$key]["categoryId"] = $value["category_id"];
             $newProductArray[$key]["name"] = $value["name"];
             $newProductArray[$key]["image"] = $value["image_thumb"];
             $newProductArray[$key]["code"] = $value["code"];
