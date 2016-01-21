@@ -28,14 +28,6 @@ $result = array();
 			exit;
 		}
 
-		//check user is active or not
-		if(!check_user_active($userId)){
-			$result["return"] = false;
-			$result["message"] = "Dear user! Please pay your bills to reactivate your account.";
-			echo json_encode($result);
-			exit;
-		}
-
 		//check category name exits
 		if(!check_category_is_valid($cId,$userId)){
 			$result["message"] = "Invalid Category: This category does not belongs to you";
