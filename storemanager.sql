@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2016 at 03:42 PM
+-- Generation Time: Jan 22, 2016 at 11:57 AM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -78,7 +78,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `image_thumb`, `code`, `CP`, `SP`,
 (1, 'test', '', '', 'test2', 400, 500, 1, 1, '1453318746', 'test test2', '1 2 1', 'y'),
 (2, 'test', '', '', 'test1', 400, 500, 1, 1, '1453318774', 'test test1', '1 2 1', 'y'),
 (3, 'hello', 'pic/1/test2/IMG_1453361867.jpg', 'pic/1/test2/THUMB_1453361867.jpg', '1234', 100, 200, 1, 2, '1453361867', 'hello 1234', '1', 'y'),
-(4, 'relaxo', 'pic/1/test2/IMG_1453362472.jpg', 'pic/1/test2/THUMB_1453362472.jpg', '123', 100, 200, 1, 2, '1453362472', 'relaxo 123', '1', 'y');
+(4, 'relaxo', 'pic/1/test2/IMG_1453362472.jpg', 'pic/1/test2/THUMB_1453362472.jpg', '12345', 100, 200, 1, 2, '1453362472', 'relaxo 123', '1', 'y');
 
 -- --------------------------------------------------------
 
@@ -134,20 +134,21 @@ CREATE TABLE `sq` (
   `size` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `product_id` int(11) NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sq`
 --
 
-INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`) VALUES
-(1, 1, 3, 1, 1),
-(2, 2, 1, 1, 1),
-(3, 1, 3, 1, 2),
-(4, 2, 1, 1, 2),
-(5, 1, 2, 1, 3),
-(6, 1, 2, 1, 4);
+INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`, `active`) VALUES
+(1, 1, 3, 1, 1, 'y'),
+(2, 2, 1, 1, 1, 'y'),
+(3, 1, 3, 1, 2, 'y'),
+(4, 2, 1, 1, 2, 'y'),
+(5, 1, 2, 1, 3, 'y'),
+(6, 1, 2, 1, 4, 'y');
 
 -- --------------------------------------------------------
 

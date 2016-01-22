@@ -23,14 +23,6 @@ if(isset($_POST["userId"]) && isset($_POST["productId"])){
         exit;
     }
 
-    //check user is active or not
-    if(!check_user_active($userId)){
-        $result["return"] = false;
-        $result["message"] = "Dear user! Please pay your bills to reactivate your account.";
-        echo json_encode($result);
-        exit;
-    }
-
     //check Product is valid and belong to the user
     if(!check_productId_is_valid($productId,$userId)){
         $result["return"] = false;
@@ -39,7 +31,13 @@ if(isset($_POST["userId"]) && isset($_POST["productId"])){
         exit;
     }
 
-    //delete the product
+
+    //Delete (Update) size and Quanity
+    Db::update("sq",array(
+        "active" => "n"
+    ),array("product_id","=",$productId," AND ","user_id","=",$userId));    
+
+    //delete the product (update)
     Db::update("product",array(
         "active" => "n"
     ),array("id","=",$productId));
