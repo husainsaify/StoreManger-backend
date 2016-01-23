@@ -68,6 +68,7 @@ if(isset($_POST["userId"]) && isset($_POST["productId"])){
         $result["message"] = "Success";
         $result["userId"] = $userId;
         $result["id"] = $product[0]["id"];
+        $result["categoryId"] = $product[0]["category_id"];
         $result["name"] = $product[0]["name"];
         $result["image"] = $product[0]["image"];
         $result["code"] = $product[0]["code"];
