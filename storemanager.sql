@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2016 at 08:36 PM
+-- Generation Time: Jan 25, 2016 at 09:18 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -79,7 +79,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `image_thumb`, `code`, `CP`, `SP`,
 (1, 'test', '', '', 'test2', 400, 500, 1, 1, '1453318746', 'test test2', '1 2 1', 'y', ''),
 (2, 'test', '', '', 'test1', 400, 500, 1, 1, '1453318774', 'test test1', '1 2 1', 'y', ''),
 (3, 'hello', 'pic/1/test2/IMG_1453361867.jpg', 'pic/1/test2/THUMB_1453361867.jpg', '1234', 100, 200, 1, 2, '1453361867', 'hello 1234', '1', 'y', ''),
-(4, 'relaxo', 'pic/1/test2/IMG_1453362472.jpg', 'pic/1/test2/THUMB_1453362472.jpg', '12345', 100, 200, 1, 2, '1453362472', 'relaxo 123', '1', 'y', ''),
+(4, 'relaxo', 'pic/1/edit/IMG_1453752811.jpg', 'pic/1/edit/THUMB_1453752811.jpg', '12345', 100, 200, 1, 2, '1453362472', 'relaxo 12345', '1', 'y', '1453752811'),
 (5, 'lund', 'pic/1/edit/IMG_1453750541.jpg', 'pic/1/edit/THUMB_1453750541.jpg', 'entre', 100, 200, 1, 5, '1453626774', 'lund entre', '1 2', 'y', '1453750541');
 
 -- --------------------------------------------------------
@@ -150,9 +150,9 @@ INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`, `active`) V
 (3, 1, 3, 1, 2, 'y'),
 (4, 2, 1, 1, 2, 'y'),
 (5, 1, 2, 1, 3, 'y'),
-(6, 1, 2, 1, 4, 'y'),
 (21, 1, 2, 1, 5, 'y'),
-(22, 2, 3, 1, 5, 'y');
+(22, 2, 3, 1, 5, 'y'),
+(25, 1, 2, 1, 4, 'y');
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,7 @@ ALTER TABLE `sell`
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `user`
 --
