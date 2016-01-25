@@ -1,7 +1,7 @@
 <?php
 require_once "./core/init.php";
 $result = array();
-	if (isset($_POST["productId"]) && isset($_POST["categoryId"]) && isset($_POST["userId"]) && isset($_POST["pImage"]) && isset($_POST["pName"]) && isset($_POST["pCode"]) && isset($_POST["pCode"]) && isset($_POST["pCP"]) && isset($_POST['pSP']) && isset($_POST["pSize"]) && isset($_POST["pQuantity"])) {
+	if (isset($_POST["productId"]) && isset($_POST["categoryId"]) && isset($_POST["userId"]) && isset($_POST["pImage"]) && isset($_POST["pName"]) && isset($_POST["pCode"]) && isset($_POST["pCP"]) && isset($_POST['pSP']) && isset($_POST["pSize"]) && isset($_POST["pQuantity"])) {
 		//Escape variables
 		$pId = e($_POST["productId"]);
 		$cId = e($_POST["categoryId"]);
@@ -193,7 +193,7 @@ $result = array();
 
 
 	}else{
-		$result["message"] = "Access Denied";
+		$result["message"] = "Access bc Denied";
 		$result["return"] = false;
 		echo json_encode($result);
 		exit;
