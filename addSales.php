@@ -2,15 +2,20 @@
 	require_once "./core/init.php";
 	$result = array();
 
-	if(isset($_POST["user_id"]) && isset($_POST["product_id"]) && isset($_POST["size"]) && isset($_POST['quantity']) && isset($_POST['price'])) {
-		$user_id = e($_POST["user_id"]);
-		$product_id = e($_POST["product_id"]);
-		$size = e($_POST['size']);
-		$quantity = e($_POST["quantity"]);
-		$price = e($_POST["price"]);
+	if(isset($_POST["userId"]) && isset($_POST['customerName']) && isset($_POST['name']) && isset($_POST["size"]) && isset($_POST["quantity"]) && isset($_POST["costprice"]) && isset($_POST["sellingprice"]) && isset($_POST["salesmanId"]) && isset($_POST["salesmanName"])) {
+		
+		$user_id = e($_POST["userId"]);
+		$customer_name = e($_POST["customerName"]);
+		$name_stack = e($_POST["name"]);
+		$size_stack = e($_POST["size"]);
+		$quantity_stack = e($_POST["quantity"]);
+		$costprice_stack = e($_POST["costprice"]);
+		$sellingprice_stack = e($_POST["sellingprice"]);
+		$salesman_id = e($_POST["salesmanId"]);
+		$salesman_name = e($_POST["salesmanName"]);
 
 		//check any stuff is not empty
-		if (empty($user_id) || empty($product_id) || empty($size) || empty($quantity) || empty($price)) {
+		if (empty($user_id) || empty($customer_name) || empty($name_stack) || empty($size_stack) || empty($quantity_stack) || empty($costprice_stack) || empty($sellingprice_stack) || empty($salesman_id) || empty($salesman_name)) {
 			$result["message"] = "Fill in all the fields";
 			$result["return"] = true;
 			json($result);
@@ -23,138 +28,38 @@
 			json($result);
 		}
 
-		//check product id is valid
-		if (!check_productId_is_valid($product_id, $user_id)) {
-			$result["message"] = "Invalid product";
-			$result["return"] = false;
-			json($result);
-		}
-
 		//convert stack into array
-		$sizeArray = remove_last_empty_item(explode(",", $size));
-		$quantityArray = remove_last_empty_item(explode(",", $quantity));
-		$priceArray = remove_last_empty_item(explode(",", $price));
+		$name_array = explode(",", $name_stack);
+		$size_array = explode(",", $size_stack);
+		$quantity_array = explode(",", $quantity_stack);
+		$costprice_array = explode(",", $costprice_stack);
+		$sellingprice_array = explode(",", $sellingprice_stack);
 
 
 		//add to sales
 		$date = date("d:m:Y");
 		$date_id = date("dmY");
 
-		foreach ($sizeArray as $key => $s) {
-			$q = $quantityArray[$key];
-			$p = $priceArray[$key];
+		//loop through all the element of the array
+		foreach ($name_array as $key => $value) {
+			//get item from the array and store them in varaibles
+			$name = $name_array[$key];
+			$size = $size_array[$key];
+			$quantity = $quantity_array[$key];
+			$costprice = $costprice_array[$key];
+			$sellingprice = $sellingprice_array[$key];
 
-			//check size is valid
-			$sizeCount = Db::rowCount("sq", array(
-					"user_id" => $user_id,
-					"product_id" => $product_id,
-					"size" => $s
-			), array("=", "=", "="));
+			echo "name ".$name."<br>";
+			echo "name ".$size."<br>";
+			echo "name ".$quantity."<br>";
+			echo "name ".$costprice."<br>";
+			echo "name ".$sellingprice."<br>";
+		}
 
-			if ($sizeCount <= 0) {
-				$result["message"] = "Invalid size `{$s}` of product";
-				$result["return"] = false;
-				json($result);
-			}
-
-			//check quantity is not zero
-			$quantityQuery = Db::query("SELECT quantity FROM `sq` WHERE user_id=? AND product_id=? AND size=?",array(
-				$user_id,
-				$product_id,
-				$s
-			));
-
-			//fetch quantity from the database
-			$quantityFetch = $quantityQuery->fetchAll(PDO::FETCH_ASSOC);
-			$fetchQuantity = $quantityFetch[0]["quantity"];
-
-			//check quantity is not zero
-			if($fetchQuantity <= 0){
-				$result["message"] = "Quantity of size `{$s}` is zero";
-				$result["return"] = false;
- 				json($result);
-			}
-
-			//check quantity from app is not more then quantity from database
-			if($q > $fetchQuantity){
-				$result["message"] = "You have only {$fetchQuantity} piece of size `{$s}`, Can't reduce {$q} piece";
-				$result["return"] = false;
-				json($result);
-			}
-
-			//generate new quantity
-			$newQuantity = $fetchQuantity - $q;
-
-			//update quantity in `sq`
-			$update = Db::query("UPDATE sq SET quantity=? WHERE user_id=? AND product_id=? AND size=?",array(
-				$newQuantity,
-				$user_id,
-				$product_id,
-				$s
-			));
-
-			if(!Db::getError()){
-				//success
-
-				//add into the database
-				Db::insert("sell",array(
-                    "user_id" => $user_id,
-                    "product_id" => $product_id,
-                    "size" => $s,
-                    "quantity" => $q,
-                    "price_per_q" => $p,
-                    "date" => $date,
-                    "date_id" => $date_id
-                ));
-
-                /*
-					Fetch new size from the database and store it in size_keyword
-					in the product table
-                */
-				$stnt = Db::query("SELECT size FROM `sq` WHERE quantity!=? AND user_id=? AND product_id=?",array(
-						0,
-						$user_id,
-						$product_id
-					));
-				$size_keyword_fetch = $stnt->fetchAll(PDO::FETCH_ASSOC);
-
-				$size_keyword = "";
-				//generate new size_keywords
-				foreach ($size_keyword_fetch as $key => $size) {
-
-					$size_keyword .= $size["size"];
-					if($key < count($size_keyword_fetch)-1){
-						$size_keyword .= " ";
-					}
-				}
-
-				//update size_keyword into product database
-				Db::update("product",array(
-					"size_keywords" => $size_keyword
-					),array(
-					"id","=",$product_id));
-
-
-				//if their is an error and we are unable to inter into database
-				if(Db::getError()){
-					$result["message"] = "Failed to insert into sales";
-					$result["return"] = false;
-					json($result);
-				}
-
-			}else{
-				//error
-				$result["message"] = "Failed to update quantity";
-				$result["return"] = false;
-				json($result);
-			}
-		} // foreach
-
-
-		//display success
+		/*//display success
 		$result["message"] = "success";
 		$result["return"] = true;
-		json($result);
+		json($result);*/
 	}else{
 		$result["message"] = "Access denied";
 		$result["return"] = false;
