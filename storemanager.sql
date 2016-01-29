@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2016 at 09:18 PM
+-- Generation Time: Jan 29, 2016 at 09:46 AM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -34,20 +34,6 @@ CREATE TABLE `category` (
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `user_id`, `name`, `time`, `active`) VALUES
-(1, 1, 'test', '1452186798', 'y'),
-(2, 1, 'test2', '1452190892', 'y'),
-(3, 1, 'test3', '1452191090', 'y'),
-(4, 1, 'test4', '1452191097', 'y'),
-(5, 1, 'hunkhusain', '1452269912', 'y'),
-(6, 2, 'ghanta', '1452533578', 'y'),
-(7, 2, 'test', 'test', 'y'),
-(8, 2, 'hell world', '1452882317', 'y');
-
 -- --------------------------------------------------------
 
 --
@@ -71,16 +57,31 @@ CREATE TABLE `product` (
   `last_edited` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `product`
+-- Table structure for table `sales`
 --
 
-INSERT INTO `product` (`id`, `name`, `image`, `image_thumb`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `size_keywords`, `active`, `last_edited`) VALUES
-(1, 'test', '', '', 'test2', 400, 500, 1, 1, '1453318746', 'test test2', '1 2 1', 'y', ''),
-(2, 'test', '', '', 'test1', 400, 500, 1, 1, '1453318774', 'test test1', '1 2 1', 'y', ''),
-(3, 'hello', 'pic/1/test2/IMG_1453361867.jpg', 'pic/1/test2/THUMB_1453361867.jpg', '1234', 100, 200, 1, 2, '1453361867', 'hello 1234', '1', 'y', ''),
-(4, 'relaxo', 'pic/1/edit/IMG_1453752811.jpg', 'pic/1/edit/THUMB_1453752811.jpg', '12345', 100, 200, 1, 2, '1453362472', 'relaxo 12345', '1', 'y', '1453752811'),
-(5, 'lund', 'pic/1/edit/IMG_1453750541.jpg', 'pic/1/edit/THUMB_1453750541.jpg', 'entre', 100, 200, 1, 5, '1453626774', 'lund entre', '1 2', 'y', '1453750541');
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `customer_name` text NOT NULL,
+  `salesman_id` int(11) NOT NULL,
+  `salesman_name` text NOT NULL,
+  `date` text NOT NULL,
+  `date_id` text NOT NULL,
+  `time` text NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `user_id`, `customer_name`, `salesman_id`, `salesman_name`, `date`, `date_id`, `time`, `active`) VALUES
+(1, 1, 'ali husain', 1, 'Owner', '29:01:2016', '29012016', '1454056971', 'y'),
+(2, 1, 'ali husain', 1, 'Owner', '29:01:2016', '29012016', '1454057067', 'y');
 
 -- --------------------------------------------------------
 
@@ -101,29 +102,35 @@ CREATE TABLE `salesman` (
 --
 
 INSERT INTO `salesman` (`id`, `name`, `user_id`, `time`, `active`) VALUES
-(1, 'montu', 1, '1452270486', 'y'),
-(2, 'mont', 1, '1452270562', 'y'),
-(3, 'testu', 1, '1452273170', 'y'),
-(4, 'babar', 2, '1452456461', 'y'),
-(5, 'babar', 1, '1452421421', 'y'),
-(6, 'Owner', 3, '1452927674', 'y');
+(1, 'Owner', 1, '1454053970', 'y');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sell`
+-- Table structure for table `sales_product_info`
 --
 
-CREATE TABLE `sell` (
+CREATE TABLE `sales_product_info` (
   `id` int(11) NOT NULL,
+  `sales_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `name` text NOT NULL,
   `size` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `price_per_q` int(11) NOT NULL,
-  `date` text NOT NULL,
-  `date_id` int(11) NOT NULL
+  `costprice` int(11) NOT NULL,
+  `sellingprice` int(11) NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales_product_info`
+--
+
+INSERT INTO `sales_product_info` (`id`, `sales_id`, `user_id`, `name`, `size`, `quantity`, `costprice`, `sellingprice`, `active`) VALUES
+(1, 1, 1, 'a', 1, 0, 1, 1, 'y'),
+(2, 2, 1, 'a', 1, 1, 1, 1, 'y'),
+(3, 2, 1, 'b', 2, 2, 2, 2, 'y'),
+(4, 2, 1, 'c', 3, 3, 3, 3, 'y');
 
 -- --------------------------------------------------------
 
@@ -139,20 +146,6 @@ CREATE TABLE `sq` (
   `product_id` int(11) NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sq`
---
-
-INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`, `active`) VALUES
-(1, 1, 3, 1, 1, 'y'),
-(2, 2, 1, 1, 1, 'y'),
-(3, 1, 3, 1, 2, 'y'),
-(4, 2, 1, 1, 2, 'y'),
-(5, 1, 2, 1, 3, 'y'),
-(21, 1, 2, 1, 5, 'y'),
-(22, 2, 3, 1, 5, 'y'),
-(25, 1, 2, 1, 4, 'y');
 
 -- --------------------------------------------------------
 
@@ -176,9 +169,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `storename`, `email`, `phone`, `password`, `register_at`, `active`) VALUES
-(1, 'husain saify', 'saify kids shoes', 'hsnsaify22@gmail.com', '8962239913', '$2y$10$Gz2Nb4iaOtI8OTbm1qBw8etuHE9xO6rA1NacNBpl10j7EJ15z7MZS', '1451932484', 'y'),
-(2, 'murtaza agaz', 'Ghanta', 'murtazaagaz123@gmail.com', '8962239913', '$2y$10$ScmFC4CIc4Ism0wiGSwzBOLgeMi7BBYHlVkbrOYjhY3wqxUUqXU86', '1451991657', 'y'),
-(3, 'test2', 'test2', 'test@test.com', '8962239913', '$2y$10$08aDAwOJ6iZHzKaSElNjwuNyKET3.UtDgVhQTTVQDBQtzPjPubQv2', '1452927674', 'y');
+(1, 'husain', 'saify kids shoes', 'hsnsaify22@gmail.com', '8962239913', '$2y$10$ZVZRnoCOoOBDlh0SP0aVTe8YCg6ZChRLgBJJFYflPNWnAIu3bdLvW', '1454053970', 'y');
 
 --
 -- Indexes for dumped tables
@@ -197,15 +188,21 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salesman`
 --
 ALTER TABLE `salesman`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sell`
+-- Indexes for table `sales_product_info`
 --
-ALTER TABLE `sell`
+ALTER TABLE `sales_product_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -228,32 +225,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `salesman`
 --
 ALTER TABLE `salesman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `sell`
+-- AUTO_INCREMENT for table `sales_product_info`
 --
-ALTER TABLE `sell`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `sales_product_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

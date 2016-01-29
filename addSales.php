@@ -40,6 +40,26 @@
 		$date = date("d:m:Y");
 		$date_id = date("dmY");
 
+		//Insert into Sales
+		Db::insert("sales",array(
+			"user_id" => $user_id,
+			"customer_name" => $customer_name,
+			"salesman_id" => $salesman_id,
+			"salesman_name" => $salesman_name,
+			"date" => $date,
+			"date_id" => $date_id,
+			"time" => time()));
+
+		//check For error
+		if(Db::getError()){ //true means error
+			$result["message"] = "Failed to insert sales. Try again later";
+			$result["return"] = false;
+			json($result);
+		}else{
+			//Get the salesId which is inserted
+			$sales_id = Db::lastInsertedId();
+		}
+
 		//loop through all the element of the array
 		foreach ($name_array as $key => $value) {
 			//get item from the array and store them in varaibles
@@ -49,17 +69,22 @@
 			$costprice = $costprice_array[$key];
 			$sellingprice = $sellingprice_array[$key];
 
-			echo "name ".$name."<br>";
-			echo "name ".$size."<br>";
-			echo "name ".$quantity."<br>";
-			echo "name ".$costprice."<br>";
-			echo "name ".$sellingprice."<br>";
+                        //Store in sales_product_info
+                        Db::insert("sales_product_info",  array(
+                            "sales_id" => $sales_id,
+                            "user_id" => $user_id,
+                            "name" => $name,
+                            "size" => $size,
+                            "quantity" => $quantity,
+                            "costprice"=> $costprice,
+                            "sellingprice" => $sellingprice
+                        ));
 		}
 
-		/*//display success
+		//display success
 		$result["message"] = "success";
 		$result["return"] = true;
-		json($result);*/
+		json($result);
 	}else{
 		$result["message"] = "Access denied";
 		$result["return"] = false;
