@@ -3,9 +3,9 @@
 	require_once "./core/init.php";
 	$result = array();
 
-	if(isset($_POST['s']) && isset($_POST['user_id'])){
-		$s = e($_POST["s"]);
-		$user_id = e($_POST['user_id']);
+	if(isset($_POST['productName']) && isset($_POST['userId'])){
+		$s = e($_POST["productName"]);
+		$user_id = e($_POST['userId']);
 
 		$q = "SELECT id,name,code FROM `product` WHERE ";
 		$term_count=0;
