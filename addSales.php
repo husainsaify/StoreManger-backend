@@ -17,7 +17,7 @@
 		//check any stuff is not empty
 		if (empty($user_id) || empty($customer_name) || empty($name_stack) || empty($size_stack) || empty($quantity_stack) || empty($costprice_stack) || empty($sellingprice_stack) || empty($salesman_id) || empty($salesman_name)) {
 			$result["message"] = "Fill in all the fields";
-			$result["return"] = true;
+			$result["return"] = false;
 			json($result);
 		}
 
@@ -82,7 +82,7 @@
 		}
 
 		//display success
-		$result["message"] = "success";
+		$result["message"] = "Sales added successfully";
 		$result["return"] = true;
 		json($result);
 	}else{
