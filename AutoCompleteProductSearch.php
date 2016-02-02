@@ -7,7 +7,7 @@
 		$s = e($_POST["productName"]);
 		$user_id = e($_POST['userId']);
 
-		$q = "SELECT id,name,code FROM `product` WHERE ";
+		$q = "SELECT id,name,code,CP FROM `product` WHERE ";
 		$term_count=0;
 		$searchs = explode(" ", $s);
 
