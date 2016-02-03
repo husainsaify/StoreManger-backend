@@ -34,6 +34,7 @@
 
 			/****** FETCH SIZE OF PRODUCT  **********/
 			foreach($fetch as $key => $f){
+
 				//store product id
 				$productId = $f["id"];
 
@@ -44,10 +45,21 @@
 
 				$sizeFetch = $sizeStmt->fetchAll(PDO::FETCH_COLUMN);
 
-				//Append to $fetch
-				$fetch[$key]["size"] = $sizeFetch;
-			}
+				$sizeStack = "";
+				//CREATE A SIZE STACK
+				$i = 1;
+				foreach($sizeFetch as $size){
+					$sizeStack .= $size;
 
+					if($i < count($sizeFetch)){
+						$sizeStack .= ",";
+					}
+					$i++;
+				}
+
+				//Append to $fetch
+				$fetch[$key]["size"] = $sizeStack;
+			}
 		}
 
 		$result["message"] = "success";
