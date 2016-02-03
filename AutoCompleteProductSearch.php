@@ -31,6 +31,23 @@
 		if($count > 0){
 			//fetch result from the database
 			$fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			/****** FETCH SIZE OF PRODUCT  **********/
+			foreach($fetch as $key => $f){
+				//store product id
+				$productId = $f["id"];
+
+				//fetch sizes from the database
+				$q = "SELECT `size` FROM `sq` WHERE product_id=? AND active='y'";
+
+				$sizeStmt = Db::query($q,array($productId));
+
+				$sizeFetch = $sizeStmt->fetchAll(PDO::FETCH_COLUMN);
+
+				//Append to $fetch
+				$fetch[$key]["size"] = $sizeFetch;
+			}
+
 		}
 
 		$result["message"] = "success";
