@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2016 at 05:38 PM
+-- Generation Time: Feb 04, 2016 at 04:35 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -69,8 +69,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `image`, `image_thumb`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `size_keywords`, `active`, `last_edited`) VALUES
-(1, 'test', '', '', 'test', 100, 200, 1, 1, '1454176504', 'test test', '', 'y', ''),
-(2, 'test2', '', '', 'test2', 11, 11, 1, 1, '1454177882', 'test2 test2', '2', 'y', '');
+(1, 'test', '', '', 'test', 100, 200, 1, 1, '1454176504', 'test test', '1 3', 'y', ''),
+(2, 'test2', '', '', 'test2', 11, 11, 1, 1, '1454177882', 'test2 test2', '2', 'y', '1454697497'),
+(3, 'hello', '', '', 'helloworld', 200, 500, 1, 1, '1454490335', 'hello helloworld', '1 3', 'y', '1454490364');
 
 -- --------------------------------------------------------
 
@@ -96,9 +97,21 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id`, `user_id`, `customer_name`, `salesman_id`, `salesman_name`, `date`, `date_id`, `sales_type`, `time`, `active`) VALUES
-(1, 1, 'heeeeeee', 1, 'Owner', '30:01:2016', '30012016', '', '1454146210', 'y'),
-(2, 1, 'bawa', 1, 'Owner', '30:01:2016', '30012016', '', '1454146809', 'y'),
-(3, 1, '', 1, 'Owner', '05:02:2016', '05022016', 'listed', '1454690180', 'y');
+(1, 1, 'heeeeeee', 1, 'Owner', '30/01/2016', '30012016', '', '1454146210', 'y'),
+(2, 1, 'bawa', 1, 'Owner', '30/01/2016', '30012016', '', '1454146809', 'y'),
+(3, 1, '', 1, 'Owner', '05/02/2016', '05022016', 'listed', '1454690180', 'y'),
+(4, 1, '', 1, 'Owner', '06/02/2016', '06022016', 'listed', '1454697478', 'y'),
+(5, 1, '', 1, 'Owner', '06/02/2016', '06022016', 'listed', '1454697521', 'y'),
+(6, 1, '', 1, 'Owner', '06/02/2016', '06022016', 'listed', '1454697532', 'y'),
+(7, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454489893', 'y'),
+(8, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454489975', 'y'),
+(9, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454490388', 'y'),
+(10, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454490401', 'y'),
+(11, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454490436', 'y'),
+(12, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454490860', 'y'),
+(13, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454490995', 'y'),
+(14, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454491003', 'y'),
+(15, 1, '', 1, 'Owner', '03/02/2016', '03022016', 'listed', '1454491028', 'y');
 
 -- --------------------------------------------------------
 
@@ -147,7 +160,19 @@ CREATE TABLE `sales_product_info` (
 INSERT INTO `sales_product_info` (`id`, `product_id`, `sales_id`, `user_id`, `name`, `size`, `quantity`, `costprice`, `sellingprice`, `active`) VALUES
 (1, '', 1, 1, '1', 1, 1, 1, 1, 'y'),
 (2, '', 2, 1, 'q', 1, 1, 1, 1, 'y'),
-(3, '1', 3, 1, 'test', 1, 1, 100, 120, 'y');
+(3, '1', 3, 1, 'test', 1, 1, 100, 120, 'y'),
+(4, '2', 4, 1, 'test2', 2, 1, 11, 120, 'y'),
+(5, '2', 5, 1, 'test2', 2, 1, 11, 120, 'y'),
+(6, '2', 6, 1, 'test2', 2, 1, 11, 130, 'y'),
+(7, '1', 7, 1, 'test', 3, 1, 100, 120, 'y'),
+(8, '1', 8, 1, 'test', 3, 1, 100, 120, 'y'),
+(9, '3', 9, 1, 'hello', 1, 1, 200, 500, 'y'),
+(10, '3', 10, 1, 'hello', 2, 1, 200, 500, 'y'),
+(11, '2', 11, 1, 'test2', 2, 1, 11, 111, 'y'),
+(12, '3', 12, 1, 'hello', 3, 4, 200, 1000, 'y'),
+(13, '1', 13, 1, 'test', 3, 1, 100, 200, 'y'),
+(14, '2', 14, 1, 'test2', 2, 1, 11, 20, 'y'),
+(15, '3', 15, 1, 'hello', 2, 8, 200, 400, 'y');
 
 -- --------------------------------------------------------
 
@@ -169,8 +194,12 @@ CREATE TABLE `sq` (
 --
 
 INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`, `active`) VALUES
-(1, 1, 0, 1, 1, 'y'),
-(2, 2, 2, 1, 2, 'y');
+(1, 1, 5, 1, 1, 'y'),
+(3, 2, 53, 1, 2, 'y'),
+(4, 3, 4, 1, 1, 'y'),
+(6, 1, 9, 1, 3, 'y'),
+(7, 2, 0, 1, 3, 'y'),
+(8, 3, 4, 1, 3, 'y');
 
 -- --------------------------------------------------------
 
@@ -255,12 +284,12 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `salesman`
 --
@@ -270,12 +299,12 @@ ALTER TABLE `salesman`
 -- AUTO_INCREMENT for table `sales_product_info`
 --
 ALTER TABLE `sales_product_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
