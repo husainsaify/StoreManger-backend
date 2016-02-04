@@ -6,7 +6,8 @@
 		//check user id is valid
 		if(empty($id)){
 			$result["message"] = "Fill in all the fields";
-			$result["return"] = true;
+			$result["return"] = false;
+			$result["count"] = -1;
 			json($result);
 		}
 
@@ -14,11 +15,12 @@
 		if (!check_user($id)) {
 			$result["message"] = "Invalid user";
 			$result["return"] = false;
+			$result["count"] = -1;
 			json($result);
 		}
 
 		//get date list
-		$q = Db::query("SELECT date,date_id FROM `sales` WHERE user_id=? AND active='y' ORDER BY `id` DESC",array($id));
+		$q = Db::query("SELECT `date`,`date_id` FROM `sales` WHERE user_id=? AND active='y' ORDER BY `id` DESC",array($id));
 		
 		//Count and check if user has added anysales or not
 		$count = $q->rowCount();
@@ -52,15 +54,17 @@
 			$result["return"] = true;
 			$result["message"] = "Success";
 			$result["count"] = $count;
-			$result["date"] = $dateArray;
+			$result["data"] = $dateArray;
 		}else{
 			$result["return"] = false;
 			$result["message"] = "Failed to get date. Try again later";
+			$result["count"] = -1;
 		}
 		json($result);
 	}else{
 		$result["message"] = "Access denied";
 		$result["return"] = false;
+		$result["count"] = -1;
 		json($result);
 	}
 ?>
