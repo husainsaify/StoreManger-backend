@@ -62,6 +62,13 @@
 			}
 
 			//check quantity is not zero
+			if($quantity_stack <= 0){
+				$result["message"] = "Invalid quantity. Quantity cannot be zero";
+				$result["return"] = false;
+				json($result);
+			}
+
+			//check quantity is not zero
 			$quantityQuery = Db::query("SELECT quantity FROM `sq` WHERE user_id=? AND product_id=? AND size=?",array(
 					$user_id,
 					$product_id,
