@@ -1,8 +1,8 @@
 <?php
 	require_once "./core/init.php";
 	$result = array();
-	if(isset($_POST["user_id"]) && isset($_POST["date_id"])){
-		$user_id = e($_POST["user_id"]);
+	if(isset($_POST["userId"]) && isset($_POST["date_id"])){
+		$user_id = e($_POST["userId"]);
 		$date_id = e($_POST["date_id"]);
 
 		//check 
