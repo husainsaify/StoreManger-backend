@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2016 at 09:46 AM
+-- Generation Time: Feb 05, 2016 at 05:38 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -34,6 +34,13 @@ CREATE TABLE `category` (
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `user_id`, `name`, `time`, `active`) VALUES
+(1, 1, 'ladies shoes', '1454176424', 'y');
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +64,14 @@ CREATE TABLE `product` (
   `last_edited` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `image`, `image_thumb`, `code`, `CP`, `SP`, `user_id`, `category_id`, `time`, `keywords`, `size_keywords`, `active`, `last_edited`) VALUES
+(1, 'test', '', '', 'test', 100, 200, 1, 1, '1454176504', 'test test', '', 'y', ''),
+(2, 'test2', '', '', 'test2', 11, 11, 1, 1, '1454177882', 'test2 test2', '2', 'y', '');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +86,7 @@ CREATE TABLE `sales` (
   `salesman_name` text NOT NULL,
   `date` text NOT NULL,
   `date_id` text NOT NULL,
+  `sales_type` text NOT NULL,
   `time` text NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -79,9 +95,10 @@ CREATE TABLE `sales` (
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`id`, `user_id`, `customer_name`, `salesman_id`, `salesman_name`, `date`, `date_id`, `time`, `active`) VALUES
-(1, 1, 'ali husain', 1, 'Owner', '29:01:2016', '29012016', '1454056971', 'y'),
-(2, 1, 'ali husain', 1, 'Owner', '29:01:2016', '29012016', '1454057067', 'y');
+INSERT INTO `sales` (`id`, `user_id`, `customer_name`, `salesman_id`, `salesman_name`, `date`, `date_id`, `sales_type`, `time`, `active`) VALUES
+(1, 1, 'heeeeeee', 1, 'Owner', '30:01:2016', '30012016', '', '1454146210', 'y'),
+(2, 1, 'bawa', 1, 'Owner', '30:01:2016', '30012016', '', '1454146809', 'y'),
+(3, 1, '', 1, 'Owner', '05:02:2016', '05022016', 'listed', '1454690180', 'y');
 
 -- --------------------------------------------------------
 
@@ -112,6 +129,7 @@ INSERT INTO `salesman` (`id`, `name`, `user_id`, `time`, `active`) VALUES
 
 CREATE TABLE `sales_product_info` (
   `id` int(11) NOT NULL,
+  `product_id` text NOT NULL,
   `sales_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `name` text NOT NULL,
@@ -126,11 +144,10 @@ CREATE TABLE `sales_product_info` (
 -- Dumping data for table `sales_product_info`
 --
 
-INSERT INTO `sales_product_info` (`id`, `sales_id`, `user_id`, `name`, `size`, `quantity`, `costprice`, `sellingprice`, `active`) VALUES
-(1, 1, 1, 'a', 1, 0, 1, 1, 'y'),
-(2, 2, 1, 'a', 1, 1, 1, 1, 'y'),
-(3, 2, 1, 'b', 2, 2, 2, 2, 'y'),
-(4, 2, 1, 'c', 3, 3, 3, 3, 'y');
+INSERT INTO `sales_product_info` (`id`, `product_id`, `sales_id`, `user_id`, `name`, `size`, `quantity`, `costprice`, `sellingprice`, `active`) VALUES
+(1, '', 1, 1, '1', 1, 1, 1, 1, 'y'),
+(2, '', 2, 1, 'q', 1, 1, 1, 1, 'y'),
+(3, '1', 3, 1, 'test', 1, 1, 100, 120, 'y');
 
 -- --------------------------------------------------------
 
@@ -146,6 +163,14 @@ CREATE TABLE `sq` (
   `product_id` int(11) NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sq`
+--
+
+INSERT INTO `sq` (`id`, `size`, `quantity`, `user_id`, `product_id`, `active`) VALUES
+(1, 1, 0, 1, 1, 'y'),
+(2, 2, 2, 1, 2, 'y');
 
 -- --------------------------------------------------------
 
@@ -225,17 +250,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `salesman`
 --
@@ -245,12 +270,12 @@ ALTER TABLE `salesman`
 -- AUTO_INCREMENT for table `sales_product_info`
 --
 ALTER TABLE `sales_product_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sq`
 --
 ALTER TABLE `sq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
