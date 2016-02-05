@@ -8,7 +8,7 @@
 		//check 
 		if(empty($user_id) && empty($date_id)){
 			$result["message"] = "Fill in all the fields";
-			$result["return"] = true;
+			$result["return"] = false;
 			json($result);
 		}
 
@@ -20,46 +20,55 @@
 		}
 
 		//calculate total sales of today
-		$q = Db::query("SELECT 
-						sell.id AS sell_id,sell.quantity,sell.price_per_q,product.id AS product_id,product.image,product.name,product.code,product.CP AS cp,product.SP AS sp
-						FROM sell 
-						INNER JOIN product 
-						ON sell.product_id = product.id 
-						WHERE sell.user_id = ? AND sell.date_id = ?",array($user_id,$date_id));
-		$rowCount = $q->rowCount();
-		if($rowCount > 0){
+		$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND `active`='y'",array($user_id,$date_id));
+		$sales_row_count = $q->rowCount();
+		if($sales_row_count > 0){
 			//fetch all the stuff
-			$fetch = $q->fetchAll(PDO::FETCH_ASSOC);
-			$total_sale = 0;
-			$total_CP  = 0;
-			$product = array();
-			foreach ($fetch as $key => $value) {
-				//cal total sales
-				$total_sale += $value["quantity"] * $value["price_per_q"];
-				//cal cost price
-				$total_CP += $value["quantity"] * $value["cp"];
-				//cal sales of current product
-				$current_sale = $value["quantity"] * $value["price_per_q"];
-				//cal cp of current product
-				$current_cp = $value["quantity"] * $value["cp"];
-				//add into Product
-				$product[$key]["sell_id"] = $value["sell_id"];
-				$product[$key]["quantity"] = $value["quantity"];
-				$product[$key]["price_per"] = $value["price_per_q"];
-				$product[$key]["product_id"] = $value["product_id"];
-				$product[$key]["product_image"] = $value["image"];
-				$product[$key]["name"] = $value["name"];
-				$product[$key]["code"] = $value["code"];
-				$product[$key]["cp"] = $value["cp"];
-				$product[$key]["sp"] = $value["sp"];
-				$product[$key]["current_sales"] = $current_sale."";
-				$product[$key]["current_cp"] = $current_cp."";
+			$sales_fetch = $q->fetchAll(PDO::FETCH_ASSOC);
+
+			//array to store all the sales information
+			$sales_array = array();
+			//loop through the $sales_fetch
+			$total_costprice = 0;
+			$total_sellingprice = 0;
+			foreach($sales_fetch as $key => $sales){
+				//get the sales_id
+				$sales_id = $sales["sales_id"];
+
+				//generate customer name if not entered put N/A
+				$customer_name = $sales["customer_name"];
+				if(empty($customer_name)){
+					$customer_name = "N/A";
+				}
+
+				//Fetch sale product info From sales_id
+				$info_q = Db::query("SELECT `product_id`,`name` as product_name,`size`,`quantity`,`costprice`,`sellingprice` FROM `sales_product_info` WHERE `sales_id`=? AND `active`='y'",array($sales_id));
+				$sales_info_fetch = $info_q->fetchAll(PDO::FETCH_ASSOC);
+
+				//loop through $sales_info_fetch & cal Total costprice & sellingprice
+				foreach($sales_info_fetch as $info){
+					$current_costprice = intval($info["costprice"]);
+					$current_sellingprice = intval($info["sellingprice"]);
+
+					$total_costprice += $current_costprice;
+					$total_sellingprice += $current_sellingprice;
+				}
+
+
+				//store info in array
+				$sales_array[$key]["sales_id"] = $sales_id;
+				$sales_array[$key]["customer_name"] = $customer_name;
+				$sales_array[$key]["salesman_id"] = $sales["salesman_id"];
+				$sales_array[$key]["salesman_name"] = $sales["salesman_name"];
+				$sales_array[$key]["time"] = $sales["time"];
+				$sales_array[$key]["data"] = $sales_info_fetch;
 			}
+
 			$result["message"] = "Success";
 			$result["return"] = true;
-			$result["data"] = $product;
-			$result["total_sales"] = $total_sale."";
-			$result["total_cp"] = $total_CP."";
+			$result["total_costprice"] = $total_costprice;
+			$result["total_sellingprice"] = $total_sellingprice;
+			$result["sales"] = $sales_array;
 		}else{
 			$result["message"] = "No Result found";
 			$result["return"] = false;

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ac976fd6-b491-4a71-b4eb-344ab6f574a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AutoCompleteProductSearch.php" afterPath="$PROJECT_DIR$/AutoCompleteProductSearch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/salesTracker.php" afterPath="$PROJECT_DIR$/salesTracker.php" />
     </list>
     <ignored path="storemanger.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,15 +25,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="autoCompleteProductSearch.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="autoCompleteProductSearch.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autoCompleteProductSearch.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8677686">
+            <state vertical-scroll-proportion="-23.441177">
               <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
               <folding>
-                <marker date="1454485390953" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
-                <marker date="1454485390953" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
-                <marker date="1454485390953" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
+                <marker date="1454490161383" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
+                <marker date="1454490161383" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
+                <marker date="1454490161383" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="salesTracker.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/salesTracker.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.0489511">
+              <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+              <folding>
+                <marker date="1454663870187" expanded="true" signature="549:701" placeholder="SELECT `id`,..sales..." />
+                <marker date="1454663870187" expanded="true" signature="549:702" placeholder="SELECT `id` ..sales..." />
+                <marker date="1454663870187" expanded="true" signature="1371:1520" placeholder="SELECT `prod..sales_product_info..." />
               </folding>
             </state>
           </provider>
@@ -67,6 +81,7 @@
         <option value="$PROJECT_DIR$/AutoCompleteProductSearch.php" />
         <option value="$PROJECT_DIR$/addSales.php" />
         <option value="$PROJECT_DIR$/autoCompleteProductSearch.php" />
+        <option value="$PROJECT_DIR$/salesTracker.php" />
       </list>
     </option>
   </component>
@@ -110,6 +125,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -131,7 +147,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,14 +245,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -281,13 +296,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/addCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function/function.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -652,12 +660,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autoCompleteProductSearch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8677686">
+        <state vertical-scroll-proportion="-23.441177">
           <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
           <folding>
-            <marker date="1454485390953" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
-            <marker date="1454485390953" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
-            <marker date="1454485390953" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
+            <marker date="1454490161383" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
+            <marker date="1454490161383" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
+            <marker date="1454490161383" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/salesTracker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.0489511">
+          <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+          <folding>
+            <marker date="1454663870187" expanded="true" signature="549:701" placeholder="SELECT `id`,..sales..." />
+            <marker date="1454663870187" expanded="true" signature="549:702" placeholder="SELECT `id` ..sales..." />
+            <marker date="1454663870187" expanded="true" signature="1371:1520" placeholder="SELECT `prod..sales_product_info..." />
           </folding>
         </state>
       </provider>
