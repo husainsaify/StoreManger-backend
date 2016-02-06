@@ -20,7 +20,7 @@
 		}
 
 		//calculate total sales of today
-		$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND `active`='y'",array($user_id,$date_id));
+		$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND `active`='y' ORDER BY `id` DESC",array($user_id,$date_id));
 		$sales_row_count = $q->rowCount();
 		if($sales_row_count > 0){
 			//fetch all the stuff
@@ -50,8 +50,12 @@
 					$current_costprice = intval($info["costprice"]);
 					$current_sellingprice = intval($info["sellingprice"]);
 
-					$total_costprice += $current_costprice;
-					$total_sellingprice += $current_sellingprice;
+					//get quanity
+					$q = intval($info["quantity"]);
+
+					//multiple price with quanity
+					$total_costprice += ($q * $current_costprice);
+					$total_sellingprice += ($q * $current_sellingprice);
 				}
 
 
