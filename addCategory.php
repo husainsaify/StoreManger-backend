@@ -38,7 +38,7 @@
             exit;   
         }
 
-        //category name should not be more then 10 char
+        //category name should not be to long
         if(strlen($categoryName) > 20){
             $result["return"] = false;
             $result["message"] = "Category name should not be more then 20 characters.";

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac976fd6-b491-4a71-b4eb-344ab6f574a8" name="Default" comment="" />
+    <list default="true" id="ac976fd6-b491-4a71-b4eb-344ab6f574a8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/edtCategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addCategory.php" afterPath="$PROJECT_DIR$/addCategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editProduct.php" afterPath="$PROJECT_DIR$/editProduct.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storemanager.sql" afterPath="$PROJECT_DIR$/storemanager.sql" />
+    </list>
     <ignored path="storemanger.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -22,30 +28,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="autoCompleteProductSearch.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autoCompleteProductSearch.php">
+      <file leaf-file-name="edtCategory.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/edtCategory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.441177">
-              <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-              <folding>
-                <marker date="1454490161383" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
-                <marker date="1454490161383" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
-                <marker date="1454490161383" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="salesTracker.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/salesTracker.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0489511">
-              <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
-              <folding>
-                <marker date="1454664123896" expanded="true" signature="549:701" placeholder="SELECT `id`,..sales..." />
-                <marker date="1454664123896" expanded="true" signature="549:702" placeholder="SELECT `id` ..sales..." />
-                <marker date="1454664123896" expanded="true" signature="1371:1520" placeholder="SELECT `prod..sales_product_info..." />
-              </folding>
+            <state vertical-scroll-proportion="0.6555944">
+              <caret line="48" column="142" selection-start-line="48" selection-start-column="142" selection-end-line="48" selection-end-column="142" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,7 +50,6 @@
         <option value="$PROJECT_DIR$/test2.php" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/login.php" />
-        <option value="$PROJECT_DIR$/addCategory.php" />
         <option value="$PROJECT_DIR$/categoryList.php" />
         <option value="$PROJECT_DIR$/productList.php" />
         <option value="$PROJECT_DIR$/core/init.php" />
@@ -79,6 +66,9 @@
         <option value="$PROJECT_DIR$/addSales.php" />
         <option value="$PROJECT_DIR$/autoCompleteProductSearch.php" />
         <option value="$PROJECT_DIR$/salesTracker.php" />
+        <option value="$PROJECT_DIR$/editProduct.php" />
+        <option value="$PROJECT_DIR$/addCategory.php" />
+        <option value="$PROJECT_DIR$/edtCategory.php" />
       </list>
     </option>
   </component>
@@ -96,6 +86,28 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Code StylePHP</id>
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PhpRedundantClosingTagInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -293,20 +305,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/function/function.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="1" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -545,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -637,9 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.486014">
           <caret line="167" column="43" selection-start-line="167" selection-start-column="43" selection-end-line="167" selection-end-column="43" />
-          <folding>
-            <marker date="1453369969982" expanded="true" signature="4717:4792" placeholder="SELECT quant..sq..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -647,17 +635,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="30.882353">
           <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <marker date="1454697958006" expanded="true" signature="2378:2447" placeholder="SELECT quant..sq..." />
-            <marker date="1454697958006" expanded="true" signature="3284:3352" placeholder="UPDATE sq SE..." />
-            <marker date="1454697958006" expanded="true" signature="4871:4943" placeholder="SELECT `size..sq..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/autoCompleteProductSearch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.441177">
+        <state vertical-scroll-proportion="0.0">
           <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
           <folding>
             <marker date="1454490161383" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
@@ -669,13 +652,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/salesTracker.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0489511">
-          <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.9125874">
+          <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
           <folding>
-            <marker date="1454664123896" expanded="true" signature="549:701" placeholder="SELECT `id`,..sales..." />
-            <marker date="1454664123896" expanded="true" signature="549:702" placeholder="SELECT `id` ..sales..." />
-            <marker date="1454664123896" expanded="true" signature="1371:1520" placeholder="SELECT `prod..sales_product_info..." />
+            <marker date="1454744089677" expanded="true" signature="547:719" placeholder="SELECT `id` ..sales..." />
+            <marker date="1454744089677" expanded="true" signature="1388:1537" placeholder="SELECT `prod..sales_product_info..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/editProduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4318182">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding>
+            <marker date="1454999539063" expanded="true" signature="4845:4920" placeholder="SELECT quant..sq..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6118881">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edtCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6555944">
+          <caret line="48" column="142" selection-start-line="48" selection-start-column="142" selection-end-line="48" selection-end-column="142" />
+          <folding />
         </state>
       </provider>
     </entry>

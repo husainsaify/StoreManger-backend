@@ -59,7 +59,7 @@ $result = array();
 
 				//check directory not exits create
 				if(!is_dir("pic/{$userId}/")){
-					mkdir("pic/{$userId}/"); 
+					mkdir("pic/{$userId}/");
 				}
 				mkdir("pic/{$userId}/{$dirCname}");
 			}
@@ -102,11 +102,11 @@ $result = array();
 				$size_keywords .= " ";
 			}
 		}
-		
+
 
 		/*
 			If image is empty
-			Because if the person does not select an image he so ok with old image 
+			Because if the person does not select an image he so ok with old image
 			so their is no point delete the path of the old image stored in the database
 		*/
 		if(empty($imagePath) && empty($imageThumb)){
@@ -193,7 +193,7 @@ $result = array();
 
 
 	}else{
-		$result["message"] = "Access bc Denied";
+		$result["message"] = "Access Denied";
 		$result["return"] = false;
 		echo json_encode($result);
 		exit;
