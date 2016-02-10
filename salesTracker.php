@@ -42,7 +42,7 @@
 				}
 
 				//Fetch sale product info From sales_id
-				$info_q = Db::query("SELECT `product_id`,`name` as product_name,`size`,`quantity`,`costprice`,`sellingprice` FROM `sales_product_info` WHERE `sales_id`=? AND `active`='y'",array($sales_id));
+				$info_q = Db::query("SELECT `product_id`,`name` as product_name,`product_code`,`size`,`quantity`,`costprice`,`sellingprice` FROM `sales_product_info` WHERE `sales_id`=? AND `active`='y'",array($sales_id));
 				$sales_info_fetch = $info_q->fetchAll(PDO::FETCH_ASSOC);
 
 				//loop through $sales_info_fetch & cal Total costprice & sellingprice
