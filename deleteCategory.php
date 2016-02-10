@@ -33,6 +33,10 @@ if (isset($_POST["categoryId"]) && isset($_POST["userId"])) {
 
     //check the query was successful or their was some error
     if(!Db::getError()){ //success
+
+        // Delete all the product which are child of this category
+        Db::update("product",array("active" => "n"),array("category_id","=",$categoryId," AND ","user_id","=",$userId));
+
         $result["message"] = "Category deleted successfully";
         $result["return"] = true;
     }else{ //error
