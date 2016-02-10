@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac976fd6-b491-4a71-b4eb-344ab6f574a8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/edtCategory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/deleteCategory.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addCategory.php" afterPath="$PROJECT_DIR$/addCategory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editProduct.php" afterPath="$PROJECT_DIR$/editProduct.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storemanager.sql" afterPath="$PROJECT_DIR$/storemanager.sql" />
     </list>
     <ignored path="storemanger.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="edtCategory.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edtCategory.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/edtCategory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6555944">
-              <caret line="48" column="142" selection-start-line="48" selection-start-column="142" selection-end-line="48" selection-end-column="142" />
+            <state vertical-scroll-proportion="-10.294118">
+              <caret line="47" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deleteCategory.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deleteCategory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.743007">
+              <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -69,6 +76,7 @@
         <option value="$PROJECT_DIR$/editProduct.php" />
         <option value="$PROJECT_DIR$/addCategory.php" />
         <option value="$PROJECT_DIR$/edtCategory.php" />
+        <option value="$PROJECT_DIR$/deleteCategory.php" />
       </list>
     </option>
   </component>
@@ -134,8 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -156,6 +162,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,13 +313,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="22" selection-start-line="7" selection-start-column="4" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addCategory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -603,16 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
-          <folding>
-            <marker date="1453019608178" expanded="true" signature="2879:2942" placeholder="INSERT INTO `${{$tableName}}`..." />
-            <marker date="1453019608178" expanded="true" signature="3777:3825" placeholder="UPDATE `${{$..." />
-            <marker date="1453019608178" expanded="true" signature="4334:4365" placeholder="DELETE FROM ..." />
-            <marker date="1453019608178" expanded="true" signature="5278:5311" placeholder="SELECT * FRO..${{$tableName}..." />
-            <marker date="1453019608178" expanded="true" signature="5278:5339" placeholder="SELECT * FRO..${{$tableName}..." />
-            <marker date="1453019608178" expanded="true" signature="5278:5340" placeholder="SELECT * FRO..${{$tableName}..." />
-            <marker date="1453019608178" expanded="true" signature="5278:5348" placeholder="SELECT * FRO..${{$tableName}..." />
-            <marker date="1453019608178" expanded="true" signature="6377:6410" placeholder="SELECT * FRO..${{$tableName}..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -620,7 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="209" column="9" selection-start-line="209" selection-start-column="9" selection-end-line="209" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -642,11 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-          <folding>
-            <marker date="1454490161383" expanded="true" signature="241:284" placeholder="SELECT id,na..product..." />
-            <marker date="1454490161383" expanded="true" signature="994:1035" placeholder="SELECT `size..sq..." />
-            <marker date="1454490161383" expanded="true" signature="994:1051" placeholder="SELECT `size..sq..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,10 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9125874">
           <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
-          <folding>
-            <marker date="1454744089677" expanded="true" signature="547:719" placeholder="SELECT `id` ..sales..." />
-            <marker date="1454744089677" expanded="true" signature="1388:1537" placeholder="SELECT `prod..sales_product_info..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,9 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4318182">
           <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding>
-            <marker date="1454999539063" expanded="true" signature="4845:4920" placeholder="SELECT quant..sq..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -675,14 +653,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6118881">
           <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/edtCategory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6555944">
-          <caret line="48" column="142" selection-start-line="48" selection-start-column="142" selection-end-line="48" selection-end-column="142" />
+        <state vertical-scroll-proportion="-10.294118">
+          <caret line="47" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.743007">
+          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
           <folding />
         </state>
       </provider>
