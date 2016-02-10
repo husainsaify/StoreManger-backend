@@ -21,7 +21,8 @@ if(isset($_POST['userId'])){
 
     //count category
     $categoryCount = Db::rowCount("category",array(
-            "user_id" => $userId),array("="));
+            "user_id" => $userId,
+            "active" => "y"),array("=","="));
 
     if($categoryCount <= 0){
         $result["return"] = true;
