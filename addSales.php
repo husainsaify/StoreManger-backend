@@ -34,12 +34,13 @@
 		Check if sales is from ListedProduct or NonListedProduct
 		 ************************************/
 
-		if(isset($_POST["salesType"]) && isset($_POST["productId"])){
+		if(isset($_POST["salesType"]) && isset($_POST["productId"]) && isset($_POST["productCode"])){
 
 			/*********************** Listed Product *****************/
 
 			$sales_type = e($_POST["salesType"]);
 			$product_id = e($_POST["productId"]);
+			$product_code = e($_POST["productCode"]);
 
 			//check product id is valid or not
 			if(!check_productId_is_valid($product_id,$user_id)){
@@ -134,6 +135,7 @@
 				//Store in sales_product_info
 				Db::insert("sales_product_info",  array(
 						"product_id" => $product_id,
+						"product_code" => $product_code,
 						"sales_id" => $sales_id,
 						"user_id" => $user_id,
 						"name" => $name_stack,
