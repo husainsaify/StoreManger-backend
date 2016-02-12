@@ -251,4 +251,23 @@ function check_salesman_exits($salesman,$userid){
     ),array("=","="));
 
     return $cout == 1 ? false : true;
-}    
+}
+
+//Methods to check salesman belongs to the particalar
+function check_salesman_id_is_valid($salesman_id,$user_id){
+    $cout = Db::rowCount("salesman",array(
+        "id" => $salesman_id,
+        "user_id" => $user_id
+    ),array("=","="));
+
+    return $cout == 1 ? true : false;
+}
+
+//Method to check salesman has done any sales or not
+function check_salesman_has_done_any_sales($salesman_id){
+    $cou = Db::rowCount("sales",array(
+        "salesman_id" => $salesman_id
+    ),array("="));
+
+    return $cou >= 1 ? true : false;
+}

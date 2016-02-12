@@ -10,22 +10,21 @@ if (isset($_POST["categoryId"]) && isset($_POST["userId"])) {
     if (empty($categoryId) || empty($userId)) {
         $result["message"] = "Fill in all the fields";
         $result["return"] = false;
+        json($result);
     }
 
     //check user account exits
     if(!check_user($userId)){
         $result["message"] = "Invalid user.";
         $result["return"] = false;
-        echo json_encode($result);
-        exit;
+        json($result);
     }
 
     //check category name exits
     if(!check_category_is_valid($categoryId,$userId)){
         $result["message"] = "Invalid Category: This category does not belongs to you";
         $result["return"] = false;
-        echo json_encode($result);
-        exit;
+        json($result);
     }
 
     //Update category name
@@ -43,13 +42,11 @@ if (isset($_POST["categoryId"]) && isset($_POST["userId"])) {
         $result["message"] = "Failed to deleted category";
         $result["return"] = false;
     }
-    echo json_encode($result);
-    exit;
+    json($result);
 
 
 }else{
     $result["message"] = "Access Denied";
     $result["return"] = false;
-    echo json_encode($result);
-    exit;
+    json($result);
 }
