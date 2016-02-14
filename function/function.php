@@ -271,3 +271,4 @@ function check_salesman_has_done_any_sales($salesman_id){
 
     return $cou >= 1 ? true : false;
 }
+

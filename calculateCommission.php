@@ -1,6 +1,16 @@
 <?php
 require_once "./core/init.php";
 $result = array();
+function check_in_range($fromDate, $toDate, $currentDate){
+  // Convert to timestamp
+  $start_ts = strtotime($fromDate);
+  $end_ts = strtotime($toDate);
+  $user_ts = strtotime($currentDate);
+
+  // Check that user date is between start & end
+  return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+}
+
 if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate"]) && isset($_POST["salesmanId"])) {
     //escape variables
     $user_id = e($_POST["userId"]);
@@ -36,10 +46,6 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
         json($result);
     }
 
-    //CREATE FROM & TO DATE
-    $from_date = date("Y-m-d",strtotime($from_date));
-    $to_date = date("Y-m-d",strtotime($to_date));
-
     //fetch all the sales
     $all_sales_fetch = Db::fetch("sales",array(
         "user_id" => $user_id,
@@ -55,27 +61,26 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
     //and store its sales id in $sales_id_array
     foreach($all_sales_fetch as $sales_fetch){
         //GET THE CURRENT SALES DATE
-        $current_date = date("Y-m-d",strtotime($sales_fetch["date"]));
+
+        //Replace "/" with "-" on current date
+        $current_date = str_replace("/","-",$sales_fetch["date"]);
         $current_sales_id = $sales_fetch["id"];
+
+
 
         /*
             CHECK CURRENT Date is IN BETWEEN FROM AND TO DATE
             if yes store its sales_id in $sales_id_array
         */
-        if(($current_date >= $from_date) && ($current_date <= $to_date)){
+        if(check_in_range($from_date,$to_date,$current_date)){
             //Store SALES_ID in Sales_id_array
             $sales_id_array[] = $current_sales_id;
 
             //increment $total_item_sold_to_customers
             $total_item_sold_to_customers++;
-
-            /*echo "Current date ".$current_date."<br>";
-            echo "From date ".$from_date."<br>";
-            echo "To date ".$to_date."<br><hr>";*/
         }
 
     }
-    exit;
 
     //FETCH sales info with the help of sales_id which is stored in sales_id_array
 
