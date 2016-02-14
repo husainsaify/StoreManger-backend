@@ -4,13 +4,17 @@ $result = array();
 if(isset($_POST['userId']) && isset($_POST['name'])){
 	$userId = e($_POST['userId']);
 	$name = e($_POST['name']);
+
     //check size is set
     if(isset($_POST["size"])){
         $size = e($_POST['size']);
     }
+
+    //check if categoryId is set
     if(isset($_POST['categoryId'])){
         $categoryId = e($_POST['categoryId']);
     }
+    
 	//check $userId and product Name is not empty
 	if (empty($userId) || empty($name)) {
 		$result["message"] = "Fill in all the fields";

@@ -36,15 +36,23 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
         json($result);
     }
 
-    //CREATE FROM & TO DATE
-    $from_date = date("Y-m-d",strtotime($from_date));
-    $to_date = date("Y-m-d",strtotime($to_date));
-
     //fetch all the sales
     $all_sales_fetch = Db::fetch("sales",array(
         "user_id" => $user_id,
         "salesman_id" => $salesman_id
     ),array("=","="),"DESC");
+
+    //explode from & to date and get Day month and week
+    $from_date_array = explode("/",$from_date);
+    $to_date_array = explode("/",$to_date);
+    //from
+    $from_date_day = $from_date_array[0];
+    $from_date_month = $from_date_array[1];
+    $from_date_year = $from_date_array[2];
+    //to
+    $to_date_day = $to_date_array[0];
+    $to_date_month = $to_date_array[1];
+    $to_date_year = $to_date_array[2];
 
 
     //array to store all the sales id which are between FROM & To date
@@ -54,28 +62,54 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
     //Fetch thought all the sales and get the sales which is between from and to date
     //and store its sales id in $sales_id_array
     foreach($all_sales_fetch as $sales_fetch){
-        //GET THE CURRENT SALES DATE
-        $current_date = date("Y-m-d",strtotime($sales_fetch["date"]));
+
+        $date_array = explode("/",$sales_fetch["date"]);
+        $current_date_day = $date_array[0];
+        $current_date_month = $date_array[1];
+        $current_date_year = $date_array[2];
+
+        echo "current ".$current_date_day."/".$current_date_month."/".$current_date_year."<br>";
+        echo "from ".$from_date_day."/".$from_date_month."/".$from_date_year."<br>";
+        echo "to ".$to_date_day."/".$to_date_month."/".$to_date_year."<br>";
+
         $current_sales_id = $sales_fetch["id"];
 
-        /*
-            CHECK CURRENT Date is IN BETWEEN FROM AND TO DATE
-            if yes store its sales_id in $sales_id_array
-        */
-        if(($current_date >= $from_date) && ($current_date <= $to_date)){
-            //Store SALES_ID in Sales_id_array
-            $sales_id_array[] = $current_sales_id;
+        //check Current year is Greater then Equal FROM year AND smaller then equal To year
+        /*filter_var($current_date_year,FILTER_VALIDATE_INT,array(
+                    'options' => array(
+                        'min_range' => $from_date_year, 
+                        'max_range' => $to_date_year
+                    )
+            ))*/
+    //($current_date_year >= $from_date_year) && ($current_date_year <= $to_date_year)
+    //($current_date_month >= $from_date_month) && ($current_date_month <= $to_date_month)
+    //($current_date_day >= $from_date_day) && ($current_date_day <= $to_date_day)
+        if(($from_date_year <= $current_date_year) && ($current_date_year <= $to_date_year)){
+            echo "yes year<br>";
+            //check Current month is Greater then Equal From Month & smaller then Equal TO month
+            if(($from_date_month <= $current_date_month) && ($current_date_month <= $to_date_month)){
+                echo "yes month<br>";
+                //Check Current_day is From date & smaller then To date
+                if(($from_date_day <= $current_date_day) && ($current_date_day <= $to_date_day)){
+                    echo "yes day<br>";
+                    //Store SALES_ID in Sales_id_array
+                    $sales_id_array[] = $current_sales_id;
 
-            //increment $total_item_sold_to_customers
-            $total_item_sold_to_customers++;
-
-            /*echo "Current date ".$current_date."<br>";
-            echo "From date ".$from_date."<br>";
-            echo "To date ".$to_date."<br><hr>";*/
+                    //increment $total_item_sold_to_customers
+                    $total_item_sold_to_customers++;
+                }else{
+                    echo "no day<br>";
+                }
+            }else{
+                echo "no month<br>";
+            }
+        }else{
+            echo "no year<br>";
         }
 
+        echo "<hr>";
     }
-    exit;
+    exit();
 
     //FETCH sales info with the help of sales_id which is stored in sales_id_array
 
@@ -112,9 +146,8 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
             $result["return"] = true;
         }
         json($result);
-
     }else{
-        $result["message"] = "No Sales done by this salesman between ".$from_date." to ".$to_date;
+        $result["message"] = "No Sales done by this salesman between {$from_date} to {$to_date}";
         $result["return"] = false;
         json($result);
     }
