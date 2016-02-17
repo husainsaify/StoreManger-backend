@@ -5,6 +5,12 @@
 		$user_id = e($_POST["userId"]);
 		$date_id = e($_POST["date_id"]);
 
+
+		//Store salesmanId if its present
+		if(isset($_POST["salesmanId"])){
+			$salesman_id = e($_POST["salesmanId"]);
+		}
+
 		//check 
 		if(empty($user_id) && empty($date_id)){
 			$result["message"] = "Fill in all the fields";
@@ -19,8 +25,38 @@
 			json($result);
 		}
 
-		//calculate total sales of today
-		$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND `active`='y' ORDER BY `id` DESC",array($user_id,$date_id));
+		/*
+			IF SALESMAN ID IS PRESENT
+		*/
+		if(!empty($salesman_id)){
+			//check salesMan belongs to the user
+			if(!check_salesman_id_is_valid($salesman_id,$user_id)){
+				$result["message"] = "Invalid salesman, This salesman does not belongs to you";
+				$result["return"] = false;
+				json($result);
+			}
+
+			/*
+				Check date_id
+				if date_id is ALL (fetch all the sales of every day)
+				else date_id is specific fetch data of that day specific
+			*/
+			if($date_id == "all"){
+				//fetch all the sales of this salesman 
+				$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND salesman_id=? AND `active`='y' ORDER BY `id` DESC",array($user_id,$salesman_id));
+			}else{
+				//fetch sales from specific date_id 
+				$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND salesman_id=? AND `active`='y' ORDER BY `id` DESC",array($user_id,$date_id,$salesman_id));
+			}
+		}
+		/*
+			SALESMAN ID IS NOT PRESENT
+		*/
+		else{
+			//calculate total sales 
+			$q = Db::query("SELECT `id` as sales_id,`customer_name`,`salesman_id`,`salesman_name`,`sales_type`,`time` FROM `sales` WHERE `user_id`=? AND `date_id`=? AND `active`='y' ORDER BY `id` DESC",array($user_id,$date_id));
+		}
+
 		$sales_row_count = $q->rowCount();
 		if($sales_row_count > 0){
 			//fetch all the stuff
