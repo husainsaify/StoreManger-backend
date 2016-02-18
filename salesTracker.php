@@ -7,7 +7,7 @@
 
 
 		//Store salesmanId if its present
-		if(isset($_POST["salesmanId"])){
+		if(isset($_POST["salesmanId"]) && !empty($_POST["salesmanId"])){
 			$salesman_id = e($_POST["salesmanId"]);
 		}
 
