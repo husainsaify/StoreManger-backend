@@ -65,7 +65,7 @@ if(isset($_POST['userId']) && isset($_POST['name'])){
         Because their is not need to fetch that product which is deleted
     */
     $q .= "AND `active`='y' ";
-    
+
     //execute this query and get the results from the database
     $stmt = Db::query($q,array());
     //check we have no error

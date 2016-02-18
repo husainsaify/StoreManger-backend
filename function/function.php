@@ -244,9 +244,9 @@ function json($result = array()){
 /*
     Method to check Salesman with same name in Same userId exits or not
 */
-function check_salesman_exits($salesman,$userid){
+function check_salesman_exits($salesman_name,$userid){
     $cout = Db::rowCount("salesman",array(
-        "name" => $salesman,
+        "name" => $salesman_name,
         "user_id" => $userid
     ),array("=","="));
 

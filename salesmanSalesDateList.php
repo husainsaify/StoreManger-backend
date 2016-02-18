@@ -1,10 +1,12 @@
 <?php
 	require_once "./core/init.php";
 	$result = array();
-	if(isset($_POST['userId'])){
-		$id = e($_POST['userId']);
+	if(isset($_POST['userId']) && isset($_POST["salesmanId"])){
+		$user_id = e($_POST['userId']);
+		$salesman_id = e($_POST["salesmanId"]);
+
 		//check user id is valid
-		if(empty($id)){
+		if(empty($user_id) && isset($salesman_id)){
 			$result["message"] = "Fill in all the fields";
 			$result["return"] = false;
 			$result["count"] = -1;
@@ -12,16 +14,24 @@
 		}
 
 		//check user id is valid
-		if (!check_user($id)) {
+		if (!check_user($user_id)) {
 			$result["message"] = "Invalid user";
 			$result["return"] = false;
 			$result["count"] = -1;
 			json($result);
 		}
 
-		//get date list
-		$q = Db::query("SELECT `date`,`date_id` FROM `sales` WHERE user_id=? AND active='y' ORDER BY `id` DESC",array($id));
+		//If salesman id does not belongs to the user
+		if(!check_salesman_id_is_valid($salesman_id,$user_id)){
+			$result["message"] = "Invalid salesman, This salesman does not belongs to you";
+			$result["return"] = false;
+			$result["count"] = -1;
+			json($result);
+		}
 
+		//get date list
+		$q = Db::query("SELECT `date`,`date_id` FROM `sales` WHERE user_id=? AND salesman_id=? AND active='y' ORDER BY `id` DESC",array($user_id,$salesman_id));
+		
 		//Count and check if user has added anysales or not
 		$count = $q->rowCount();
 

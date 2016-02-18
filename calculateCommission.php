@@ -41,7 +41,7 @@ if (isset($_POST["userId"]) && isset($_POST["fromDate"]) && isset($_POST["toDate
 
     //check salesman has sold something or not
     if(!check_salesman_has_done_any_sales($salesman_id)){
-        $result["message"] = "No sales found for this Salesman";
+        $result["message"] = "No sales done by this salesman yet";
         $result["return"] = false;
         json($result);
     }
