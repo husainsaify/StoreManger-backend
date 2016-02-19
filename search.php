@@ -64,7 +64,7 @@ if(isset($_POST['userId']) && isset($_POST['name'])){
         add Active product clause
         Because their is not need to fetch that product which is deleted
     */
-    $q .= "AND `active`='y' ";
+    $q .= "AND `active`='y' AND `user_id`=$userId";
 
     //execute this query and get the results from the database
     $stmt = Db::query($q,array());
