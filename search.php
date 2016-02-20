@@ -41,7 +41,7 @@ if(isset($_POST['userId']) && isset($_POST['name'])){
     $searchs = preg_split("/[\s,]+/", $searchTerm);
 
     $term_count = 0;
-    $q = "SELECT id AS productId,user_id AS userId,category_id AS categoryId,name,image_thumb AS image,code,time FROM `product` WHERE ";
+    $q = "SELECT id AS productId,user_id AS userId,category_id AS categoryId,name,image_thumb AS image,code,FROM_UNIXTIME(time,'%d/%m/%y') AS time FROM `product` WHERE ";
     $i = 0;
 
     //generate query
