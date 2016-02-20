@@ -272,3 +272,13 @@ function check_salesman_has_done_any_sales($salesman_id){
     return $cou >= 1 ? true : false;
 }
 
+//Method to check sales is valid or not
+function check_sales_id_valid($sales_id,$user_id){
+    $co = Db::rowCount("sales",array(
+        "id" => $sales_id,
+        "user_id" => $user_id,
+        "active" => "y"
+        ),array("=","=","="));
+
+    return $co >= 1 ? true : false;
+}
