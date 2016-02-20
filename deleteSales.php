@@ -32,7 +32,12 @@ if(isset($_POST["userId"]) && isset($_POST["salesId"])){
     //Delete (Update) sales
     Db::update("sales",array(
         "active" => "n"
-    ),array("id","=",$salesId," AND ","user_id","=",$userId));    
+    ),array("id","=",$salesId," AND ","user_id","=",$userId));   
+
+    //delete update sales_product_info
+    Db::update("sales_product_info",array(
+        "active" => "n"
+    ),array("sales_id","=",$salesId," AND ","user_id","=",$userId)); 
 
     if(!Db::getError()){
         //success
