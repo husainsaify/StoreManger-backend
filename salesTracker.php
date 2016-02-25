@@ -79,21 +79,29 @@
 
 				//Fetch sale product info From sales_id
 				$info_q = Db::query("SELECT `product_id`,`name` as product_name,`product_code`,`size`,`quantity`,`costprice`,`sellingprice` FROM `sales_product_info` WHERE `sales_id`=? AND `active`='y'",array($sales_id));
-				$sales_info_fetch = $info_q->fetchAll(PDO::FETCH_ASSOC);
+				//get the row count for the Sales_product_info
+				$sales_product_count = $info_q->rowCount();
 
-				//loop through $sales_info_fetch & cal Total costprice & sellingprice
-				foreach($sales_info_fetch as $info){
-					$current_costprice = intval($info["costprice"]);
-					$current_sellingprice = intval($info["sellingprice"]);
+				$sales_info_fetch = array();
+				//Fetch sales product info only when Sales_product_info count is more then zero
+				if($sales_product_count > 0){
+					//Fetch sales_product_info
+					$sales_info_fetch = $info_q->fetchAll(PDO::FETCH_ASSOC);
 
-					//get quanity
-					$q = intval($info["quantity"]);
+					//loop through $sales_info_fetch & cal Total costprice & sellingprice
+					foreach($sales_info_fetch as $info){
+						$current_costprice = intval($info["costprice"]);
+						$current_sellingprice = intval($info["sellingprice"]);
 
-					//multiple price with quanity
-					$total_costprice += ($q * $current_costprice);
-					$total_sellingprice += ($q * $current_sellingprice);
+						//get quanity
+						$q = intval($info["quantity"]);
+
+						//multiple price with quanity
+						$total_costprice += ($q * $current_costprice);
+						$total_sellingprice += ($q * $current_sellingprice);
+					}
 				}
-
+			
 
 				//store info in array
 				$sales_array[$key]["sales_id"] = $sales_id;
@@ -104,11 +112,18 @@
 				$sales_array[$key]["data"] = $sales_info_fetch;
 			}
 
-			$result["message"] = "Success";
-			$result["return"] = true;
-			$result["total_costprice"] = $total_costprice;
-			$result["total_sellingprice"] = $total_sellingprice;
-			$result["sales"] = $sales_array;
+			//display info only when sales_product_info has product
+			if (!empty($sales_info_fetch) ) {
+				$result["message"] = "Success";
+				$result["return"] = true;
+				$result["total_costprice"] = $total_costprice;
+				$result["total_sellingprice"] = $total_sellingprice;
+				$result["sales"] = $sales_array;
+			}else{
+				$result["message"] = "No sales found for this date";
+				$result["return"] = false;
+			}
+			
 		}else{
 			$result["message"] = "No Result found";
 			$result["return"] = false;
