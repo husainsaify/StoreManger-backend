@@ -52,7 +52,7 @@
                 json($result);
             }
         }else{
-            $result["message"] = "Invalid email address";
+            $result["message"] = "No account exits with this email. Try Signup";
             $result["return"] = false;
             echo json_encode($result);
             exit;

@@ -186,7 +186,9 @@ function check_user_active($userId){
 function check_category_name_exits($categoryName, $userId){
     $count = Db::rowCount("category",array(
         "name" => $categoryName,
-        "user_id" => $userId), array("=","="));
+        "user_id" => $userId,
+        "active" => "y"
+        ), array("=","=","="));
     return $count <= 0 ? true : false;
 }
 
